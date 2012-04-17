@@ -15,7 +15,7 @@ module.exports = (argv) ->
     "  -v, --verbose           Output progress info"
   ], argv
 
-  console.log "Loading files..."  if options.verbose
+  process.stderr.write "Loading files...\n"  if options.verbose
   await
     fs.readFile options.file1, 'utf8', defer(err1, data1)
     fs.readFile options.file2, 'utf8', defer(err2, data2)
@@ -23,12 +23,13 @@ module.exports = (argv) ->
   throw err1 if err1
   throw err2 if err2
 
-  console.log "Parsing old file..."  if options.verbose
+  process.stderr.write "Parsing old file...\n"  if options.verbose
   json1 = JSON.parse(data1)
-  console.log "Parsing new file..."  if options.verbose
+  process.stderr.write "Parsing new file...\n"  if options.verbose
   json2 = JSON.parse(data2)
 
-  console.log "Running diff..."  if options.verbose
+  process.stderr.write "Running diff...\n"  if options.verbose
   result = diff(json1, json2)
 
-  process.stdout.write JSON.stringify(result)
+  process.stderr.write "Producing output...\n"  if options.verbose
+  process.stdout.write JSON.stringify(result, null, 2)
