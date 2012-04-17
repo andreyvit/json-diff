@@ -1,7 +1,9 @@
 
 extendedTypeOf = (obj) ->
   result = typeof obj
-  if result is 'object' and obj.constructor is Array
+  if !obj?
+    'null'
+  else if result is 'object' and obj.constructor is Array
     'array'
   else
     result
