@@ -6,7 +6,7 @@ tty = require 'tty'
 
 module.exports = (argv) ->
   options = require('dreamopt') [
-    "Usage: json-diff [-v] first.json second.json"
+    "Usage: json-diff [-vjC] first.json second.json"
 
     "Arguments:"
     "  first.json              Old file #var(file1) #required"
