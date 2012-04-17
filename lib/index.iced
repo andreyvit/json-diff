@@ -1,12 +1,5 @@
 { SequenceMatcher } = require 'difflib'
-
-
-extendedTypeOf = (obj) ->
-  result = typeof obj
-  if result is 'object' and obj.constructor is Array
-    'array'
-  else
-    result
+{ extendedTypeOf } = require './util'
 
 isScalar = (obj) -> (typeof obj isnt 'object')
 
@@ -113,9 +106,9 @@ arrayDiff = (obj1, obj2, stats) ->
               result.push ['~', change]
               allEqual = no
             else
-              result.push ['=']
+              result.push [' ']
           else
-            result.push ['=', item]
+            result.push [' ', item]
           score += 10
       when 'delete'
         for i in [i1 ... i2]

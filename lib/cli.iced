@@ -1,7 +1,8 @@
-fs = require 'fs'
+fs  = require 'fs'
+tty = require 'tty'
 
 { diff } = require './index'
-
+{ colorizeWithAnsiEscapes} = require './colorize'
 
 module.exports = (argv) ->
   options = require('dreamopt') [
@@ -13,7 +14,11 @@ module.exports = (argv) ->
 
     "General options:"
     "  -v, --verbose           Output progress info"
+    "  -C, --[no-]color        Colored output"
+    "  -j, --raw-json          Display raw JSON encoding of the diff #var(raw)"
   ], argv
+
+  process.stderr.write "#{JSON.stringify(options, null, 2)}\n"  if options.verbose
 
   process.stderr.write "Loading files...\n"  if options.verbose
   await
@@ -31,5 +36,11 @@ module.exports = (argv) ->
   process.stderr.write "Running diff...\n"  if options.verbose
   result = diff(json1, json2)
 
-  process.stderr.write "Producing output...\n"  if options.verbose
-  process.stdout.write JSON.stringify(result, null, 2)
+  options.color ?= tty.isatty(process.stdout.fd)
+
+  if options.raw
+    process.stderr.write "Serializing JSON output...\n"  if options.verbose
+    process.stdout.write JSON.stringify(result, null, 2)
+  else
+    process.stderr.write "Producing colored output...\n"  if options.verbose
+    process.stdout.write colorizeWithAnsiEscapes(result, color: options.color)
