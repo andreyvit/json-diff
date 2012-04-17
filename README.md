@@ -48,7 +48,7 @@ Tests
 
 Run:
 
-    `npm test`
+    npm test
 
 Output:
 
