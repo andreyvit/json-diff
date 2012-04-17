@@ -1,0 +1,26 @@
+{
+  "author": "Andrey Tarantsov <andreyvit@me.com>",
+  "name": "json-diff",
+  "description": "JSON diff",
+  "version": "0.0.1",
+  "homepage": "https://github.com/andreyvit/json-diff",
+  "repository": {
+    "url": "git@github.com:andreyvit/json-diff.git"
+  },
+  "main": "lib/index.js",
+  "bin": "bin/json-diff.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "dependencies": {
+    "dreamopt": "~0.6.0",
+    "difflib": "~0.2.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.0.1"
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
