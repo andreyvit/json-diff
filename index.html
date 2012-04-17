@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>json-diff by andreyvit</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>json-diff</h1>
+<p>Structural diff for JSON files</p>
+        <p class="view"><a href="https://github.com/andreyvit/json-diff">View the Project on GitHub <small>andreyvit/json-diff</small></a></p>
+        <ul>
+          <li><a href="https://github.com/andreyvit/json-diff/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/andreyvit/json-diff/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/andreyvit/json-diff">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>JSON structural diff</h1>
+
+<p>Does exactly what you think it does:</p>
+
+<p><img src="https://github.com/andreyvit/json-diff/raw/master/doc/screenshot.png" alt="Screenshot"></p>
+
+<h2>Installation</h2>
+
+<pre><code>npm install json-diff
+</code></pre>
+
+<h2>Usage</h2>
+
+<p>Simple:</p>
+
+<pre><code>json-diff a.json b.json
+</code></pre>
+
+<p>Detailed:</p>
+
+<pre><code>% json-diff --help
+Usage: json-diff [-vjC] first.json second.json
+
+Arguments:
+  first.json            Old file
+  second.json           New file
+
+General options:
+  -v, --verbose         Output progress info
+  -C, --[no-]color      Colored output
+  -j, --raw-json        Display raw JSON encoding of the diff
+  -h, --help            Display this usage information
+</code></pre>
+
+<h2>Features</h2>
+
+<ul>
+<li>colorized, diff-like output</li>
+<li>fuzzy matching of modified array elements (when array elements are object hierarchies)</li>
+<li>reasonable test coverage (far from 100%, though)</li>
+</ul><h2>Tests</h2>
+
+<p>Run:</p>
+
+<pre><code>`npm test`
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>colorize
+  ✓ should return ' &lt;value&gt;' for a scalar value
+  ✓ should return '-&lt;old value&gt;', '+&lt;new value&gt;' for a scalar diff
+  ✓ should return '-&lt;removed key&gt;: &lt;removed value&gt;' for an object diff with a removed key
+  ✓ should return '+&lt;added key&gt;: &lt;added value&gt;' for an object diff with an added key
+  ✓ should return '+&lt;added key&gt;: &lt;added stringified value&gt;' for an object diff with an added key and a non-scalar value
+  ✓ should return ' &lt;modified key&gt;: &lt;colorized diff&gt;' for an object diff with a modified key
+  ✓ should return '+&lt;inserted item&gt;' for an array diff
+  ✓ should return '-&lt;deleted item&gt;' for an array diff
+
+diff
+  with simple scalar values
+    ✓ should return undefined for two identical numbers
+    ✓ should return undefined for two identical strings
+    ✓ should return { __old: &lt;old value&gt;, __new: &lt;new value&gt; } object for two different numbers
+  with objects
+    ✓ should return undefined for two objects with identical contents
+    ✓ should return undefined for two object hierarchies with identical contents
+    ✓ should return { &lt;key&gt;__deleted: &lt;old value&gt; } when the second object is missing a key
+    ✓ should return { &lt;key&gt;__added: &lt;new value&gt; } when the first object is missing a key
+    ✓ should return { &lt;key&gt;: { __old: &lt;old value&gt;, __new: &lt;new value&gt; } } for two objects with diffent scalar values for a key
+    ✓ should return { &lt;key&gt;: &lt;diff&gt; } with a recursive diff for two objects with diffent values for a key
+  with arrays of scalars
+    ✓ should return undefined for two arrays with identical contents
+    ✓ should return [..., ['-', &lt;removed item&gt;], ...] for two arrays when the second array is missing a value
+    ✓ should return [..., ['+', &lt;added item&gt;], ...] for two arrays when the second one has an extra value
+    ✓ should return [..., ['+', &lt;added item&gt;]] for two arrays when the second one has an extra value at the end (edge case test)
+  with arrays of objects
+    ✓ should return undefined for two arrays with identical contents
+    ✓ should return [..., ['-', &lt;removed item&gt;], ...] for two arrays when the second array is missing a value
+    ✓ should return [..., ['+', &lt;added item&gt;], ...] for two arrays when the second array has an extra value
+    ✓ should return [..., ['~', &lt;diff&gt;], ...] for two arrays when an item has been modified (note: involves a crazy heuristic)
+
+✔ 25 tests complete (12ms)
+</code></pre>
+
+<h2>License</h2>
+
+<p>© Andrey Tarantsov. Distributed under the MIT license.</p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/andreyvit">andreyvit</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+    
+  </body>
+</html>
