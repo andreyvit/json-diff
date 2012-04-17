@@ -20,7 +20,7 @@ subcolorize = (key, diff, output, color, indent) ->
       else
         output color, "#{indent}#{prefix}{"
         for own subkey, subvalue of diff
-          if m = subkey.match /^(.*)__removed$/
+          if m = subkey.match /^(.*)__deleted$/
             subcolorize(m[1], subvalue, output, '-', subindent)
           else if m = subkey.match /^(.*)__added$/
             subcolorize(m[1], subvalue, output, '+', subindent)

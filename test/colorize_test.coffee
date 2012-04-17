@@ -11,7 +11,7 @@ describe 'colorize', ->
     assert.deepEqual ['-42', '+10'], colorizeToArray({ __old: 42, __new: 10 })
 
   it "should return '-<removed key>: <removed value>' for an object diff with a removed key", ->
-    assert.deepEqual [' {', '-  foo: 42', ' }'], colorizeToArray({ foo__removed: 42 })
+    assert.deepEqual [' {', '-  foo: 42', ' }'], colorizeToArray({ foo__deleted: 42 })
 
   it "should return '+<added key>: <added value>' for an object diff with an added key", ->
     assert.deepEqual [' {', '+  foo: 42', ' }'], colorizeToArray({ foo__added: 42 })
