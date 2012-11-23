@@ -2,7 +2,7 @@ assert = require 'assert'
 
 { colorize, colorizeToArray } = require "../#{process.env.JSLIB or 'lib'}/colorize"
 
-describe 'colorize', ->
+describe 'colorizeToArray', ->
 
   it "should return ' <value>' for a scalar value", ->
     assert.deepEqual [' 42'], colorizeToArray(42)
@@ -27,3 +27,13 @@ describe 'colorize', ->
 
   it "should return '-<deleted item>' for an array diff", ->
     assert.deepEqual [' [', '   10', '-  20', '   30', ' ]'], colorizeToArray([[' ', 10], ['-', 20], [' ', 30]])
+
+
+describe 'colorize', ->
+
+  it "should return a string with ANSI escapes", ->
+    assert.equal colorize({ foo: { __old: 42, __new: 10 } }), " {\n\u001b[31m-  foo: 42\u001b[39m\n\u001b[32m+  foo: 10\u001b[39m\n }\n"
+
+  it "should return a string without ANSI escapes on { color: false }", ->
+    assert.equal colorize({ foo: { __old: 42, __new: 10 } }, color: no), " {\n-  foo: 42\n+  foo: 10\n }\n"
+
