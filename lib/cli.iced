@@ -2,7 +2,7 @@ fs  = require 'fs'
 tty = require 'tty'
 
 { diff } = require './index'
-{ colorizeWithAnsiEscapes} = require './colorize'
+{ colorize } = require './colorize'
 
 module.exports = (argv) ->
   options = require('dreamopt') [
@@ -43,4 +43,4 @@ module.exports = (argv) ->
     process.stdout.write JSON.stringify(result, null, 2)
   else
     process.stderr.write "Producing colored output...\n"  if options.verbose
-    process.stdout.write colorizeWithAnsiEscapes(result, color: options.color)
+    process.stdout.write colorize(result, color: options.color)
