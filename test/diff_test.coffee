@@ -1,6 +1,8 @@
+fs     = require 'fs'
+Path   = require 'path'
 assert = require 'assert'
 
-{ diff } = require "../#{process.env.JSLIB or 'lib'}/index"
+{ diff, diffString } = require "../#{process.env.JSLIB or 'lib'}/index"
 
 describe 'diff', ->
 
@@ -62,3 +64,16 @@ describe 'diff', ->
 
     it "should return [..., ['~', <diff>], ...] for two arrays when an item has been modified (note: involves a crazy heuristic)", ->
       assert.deepEqual [[' '], ['~', { foo: { __old: 20, __new: 21 } }], [' ']], diff([{ foo: 10, bar: { bbbar: 10, bbboz: 11 } }, { foo: 20, bar: { bbbar: 50, bbboz: 25 } }, { foo: 30, bar: { bbbar: 92, bbboz: 34 } }], [{ foo: 10, bar: { bbbar: 10, bbboz: 11 } }, { foo: 21, bar: { bbbar: 50, bbboz: 25 } }, { foo: 30, bar: { bbbar: 92, bbboz: 34 } }])
+
+
+describe 'diffString', ->
+
+  readExampleFile = (file) -> fs.readFileSync(Path.join(__dirname, '../example', file), 'utf8')
+  a = JSON.parse(readExampleFile('a.json'))
+  b = JSON.parse(readExampleFile('b.json'))
+
+  it "should produce the expected result for the example JSON files", ->
+    assert.equal diffString(a, b, color: no), readExampleFile('result.jsdiff')
+
+  it "should produce the expected colored result for the example JSON files", ->
+    assert.equal diffString(a, b), readExampleFile('result-colored.jsdiff')

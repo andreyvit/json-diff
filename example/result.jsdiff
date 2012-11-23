@@ -1,0 +1,20 @@
+ {
+   boz: [
++    0
+     1
+-    2
+-    3
+     4
+     5
+     6
++    7
+   ]
+   fubar: {
+     kaboom: {
+       afoo: {
+-        aboz: "zoba"
++        aboz: "zozoba"
+       }
+     }
+   }
+ }

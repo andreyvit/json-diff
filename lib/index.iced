@@ -1,5 +1,6 @@
 { SequenceMatcher } = require 'difflib'
 { extendedTypeOf } = require './util'
+{ colorize } = require './colorize'
 
 isScalar = (obj) -> (typeof obj isnt 'object')
 
@@ -159,4 +160,9 @@ diffScore = (obj1, obj2) ->
   [score, change] = diffWithScore(obj1, obj2)
   return score
 
-module.exports = { diff }
+diffString = (obj1, obj2, options) ->
+  return colorize(diff(obj1, obj2), options)
+
+
+
+module.exports = { diff, diffString }
