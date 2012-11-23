@@ -1,6 +1,6 @@
 assert = require 'assert'
 
-{ colorizeToArray } = require '../lib/colorize'
+{ colorize, colorizeToArray } = require "../#{process.env.JSLIB or 'lib'}/colorize"
 
 describe 'colorize', ->
 

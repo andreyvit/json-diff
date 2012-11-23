@@ -50,6 +50,10 @@ Run:
 
     npm test
 
+Test coverage report:
+
+    npm run-script cov
+
 Output:
 
     colorize

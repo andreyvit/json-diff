@@ -1,3 +1,5 @@
 *.iced
 *.coffee
 /example
+/lib-cov
+coverage.html

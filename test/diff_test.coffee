@@ -1,6 +1,6 @@
 assert = require 'assert'
 
-{ diff } = require '../lib/index'
+{ diff } = require "../#{process.env.JSLIB or 'lib'}/index"
 
 describe 'diff', ->
 
