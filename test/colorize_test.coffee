@@ -28,6 +28,13 @@ describe 'colorizeToArray', ->
   it "should return '-<deleted item>' for an array diff", ->
     assert.deepEqual [' [', '   10', '-  20', '   30', ' ]'], colorizeToArray([[' ', 10], ['-', 20], [' ', 30]])
 
+  it "should handle an array diff with subobject diff", ->
+    input = [ [" "], ["~", {"foo__added": 42}], [" "] ]
+    expected = [" [", "   ...", "   {", "+    foo: 42", "   }", "   ...", " ]"]
+    console.log "output:\n%s", colorizeToArray(input).join("\n")
+    assert.deepEqual colorizeToArray(input), expected
+
+
 
 describe 'colorize', ->
 

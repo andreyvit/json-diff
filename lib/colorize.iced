@@ -33,13 +33,13 @@ subcolorizeToCallback = (key, diff, output, color, indent) ->
 
       looksLikeDiff = yes
       for item in diff
-        if (extendedTypeOf(item) isnt 'array') or (item.length != 2) or !(typeof(item[0]) is 'string') or item[0].length != 1 or !(item[0] in [' ', '-', '+', '~'])
+        if (extendedTypeOf(item) isnt 'array') or !((item.length is 2) or ((item.length is 1) and (item[0] is ' '))) or !(typeof(item[0]) is 'string') or item[0].length != 1 or !(item[0] in [' ', '-', '+', '~'])
           looksLikeDiff = no
 
       if looksLikeDiff
         for [op, subvalue] in diff
           if op is ' ' && !subvalue?
-            subcolorizeToCallback('', '...', output, ' ', subindent)
+            output(' ', subindent + '...')
           else
             unless op in [' ', '~', '+', '-']
               throw new Error("Unexpected op '#{op}' in #{JSON.stringify(diff, null, 2)}")
