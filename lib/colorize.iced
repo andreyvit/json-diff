@@ -68,7 +68,7 @@ colorizeToArray = (diff) ->
 colorize = (diff, options={}) ->
   output = []
   colorizeToCallback diff, (color, line) ->
-    if options.color
+    if options.color ? yes
       output.push (options.theme?[color] ? Theme[color])("#{color}#{line}") + "\n"
     else
       output.push "#{color}#{line}\n"
