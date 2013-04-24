@@ -30,7 +30,7 @@ objectDiff = (obj1, obj2) ->
     score += Math.min(20, Math.max(-10, subscore / 5))  # BATMAN!
 
   if Object.keys(result).length is 0
-    [score, result] = [100 * Object.keys(obj1).length, undefined]
+    [score, result] = [100 * Math.max(Object.keys(obj1).length, 0.5), undefined]
   else
     score = Math.max(0, score)
 
@@ -39,25 +39,28 @@ objectDiff = (obj1, obj2) ->
   return [score, result]
 
 
-findMatchingObject = (item, fuzzyOriginals) ->
+findMatchingObject = (item, index, fuzzyOriginals) ->
   # console.log "findMatchingObject: " + JSON.stringify({item, fuzzyOriginals}, null, 2)
   bestMatch = null
 
+  matchIndex = 0
   for own key, candidate of fuzzyOriginals when key isnt '__next'
+    indexDistance = Math.abs(matchIndex - index)
     if extendedTypeOf(item) == extendedTypeOf(candidate)
       score = diffScore(item, candidate)
-      if !bestMatch || score > bestMatch.score
-        bestMatch = { score, key }
+      if !bestMatch || score > bestMatch.score || (score == bestMatch.score && indexDistance < bestMatch.indexDistance)
+        bestMatch = { score, key, indexDistance }
+    matchIndex++
 
   # console.log "findMatchingObject result = " + JSON.stringify(bestMatch, null, 2)
   bestMatch
 
 
 scalarize = (array, originals, fuzzyOriginals) ->
-  for item in array
+  for item, index in array
     if isScalar item
       item
-    else if fuzzyOriginals && (bestMatch = findMatchingObject(item, fuzzyOriginals)) && bestMatch.score > 40
+    else if fuzzyOriginals && (bestMatch = findMatchingObject(item, index, fuzzyOriginals)) && bestMatch.score > 40
       originals[bestMatch.key] = item
       bestMatch.key
     else
