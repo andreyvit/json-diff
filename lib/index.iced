@@ -30,7 +30,7 @@ objectDiff = (obj1, obj2) ->
     score += Math.min(20, Math.max(-10, subscore / 5))  # BATMAN!
 
   if Object.keys(result).length is 0
-    [score, result] = [100 * Object.keys(obj1).length, undefined]
+    [score, result] = [100 * Math.max(Object.keys(obj1).length, 0.5), undefined]
   else
     score = Math.max(0, score)
 

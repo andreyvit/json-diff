@@ -19,6 +19,9 @@ describe 'diff', ->
 
   describe 'with objects', ->
 
+    it "should return undefined for two empty objects", ->
+      assert.deepEqual undefined, diff({ }, { })
+
     it "should return undefined for two objects with identical contents", ->
       assert.deepEqual undefined, diff({ foo: 42, bar: 10 }, { foo: 42, bar: 10 })
 
@@ -55,6 +58,12 @@ describe 'diff', ->
 
     it "should return undefined for two arrays with identical contents", ->
       assert.deepEqual undefined, diff([{ foo: 10 }, { foo: 20 }, { foo: 30 }], [{ foo: 10 }, { foo: 20 }, { foo: 30 }])
+
+    it "should return undefined for two arrays with identical, empty object contents", ->
+      assert.deepEqual undefined, diff([{ }], [{ }])
+
+    it "should return undefined for two arrays with identical, empty array contents", ->
+      assert.deepEqual undefined, diff([[]], [[]])
 
     it "should return undefined for two arrays with identical, repeated contents", ->
       assert.deepEqual undefined, diff([{ a: 1, b: 2 }, { a: 1, b: 2 }], [{ a: 1, b: 2 }, { a: 1, b: 2 }])
