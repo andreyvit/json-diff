@@ -56,6 +56,9 @@ describe 'diff', ->
     it "should return undefined for two arrays with identical contents", ->
       assert.deepEqual undefined, diff([{ foo: 10 }, { foo: 20 }, { foo: 30 }], [{ foo: 10 }, { foo: 20 }, { foo: 30 }])
 
+    it "should return undefined for two arrays with identical, repeated contents", ->
+      assert.deepEqual undefined, diff([{ a: 1, b: 2 }, { a: 1, b: 2 }], [{ a: 1, b: 2 }, { a: 1, b: 2 }])
+
     it "should return [..., ['-', <removed item>], ...] for two arrays when the second array is missing a value", ->
       assert.deepEqual [[' '], ['-', { foo: 20 }], [' ']], diff([{ foo: 10 }, { foo: 20 }, { foo: 30 }], [{ foo: 10 }, { foo: 30 }])
 
