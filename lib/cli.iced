@@ -44,3 +44,5 @@ module.exports = (argv) ->
   else
     process.stderr.write "Producing colored output...\n"  if options.verbose
     process.stdout.write colorize(result, color: options.color)
+
+  process.exit 1 if result
