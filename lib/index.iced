@@ -39,12 +39,12 @@ objectDiff = (obj1, obj2) ->
   return [score, result]
 
 
-findMatchingObject = (item, index, fuzzyOriginals) ->
+findMatchingObject = (item, index, fuzzyOriginals, used) ->
   # console.log "findMatchingObject: " + JSON.stringify({item, fuzzyOriginals}, null, 2)
   bestMatch = null
 
   matchIndex = 0
-  for own key, candidate of fuzzyOriginals when key isnt '__next'
+  for own key, candidate of fuzzyOriginals when key isnt '__next' and !used[key]?
     indexDistance = Math.abs(matchIndex - index)
     if extendedTypeOf(item) == extendedTypeOf(candidate)
       score = diffScore(item, candidate)
@@ -60,7 +60,7 @@ scalarize = (array, originals, fuzzyOriginals) ->
   for item, index in array
     if isScalar item
       item
-    else if fuzzyOriginals && (bestMatch = findMatchingObject(item, index, fuzzyOriginals)) && bestMatch.score > 40
+    else if fuzzyOriginals && (bestMatch = findMatchingObject(item, index, fuzzyOriginals, originals)) && bestMatch.score > 40
       originals[bestMatch.key] = item
       bestMatch.key
     else
