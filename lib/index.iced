@@ -60,7 +60,7 @@ scalarize = (array, originals, fuzzyOriginals) ->
   for item, index in array
     if isScalar item
       item
-    else if fuzzyOriginals && (bestMatch = findMatchingObject(item, index, fuzzyOriginals)) && bestMatch.score > 40
+    else if fuzzyOriginals && (bestMatch = findMatchingObject(item, index, fuzzyOriginals)) && bestMatch.score > 40 && !originals[bestMatch.key]?
       originals[bestMatch.key] = item
       bestMatch.key
     else
