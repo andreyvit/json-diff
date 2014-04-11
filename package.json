@@ -19,7 +19,9 @@
     "cli-color": "~0.1.6"
   },
   "devDependencies": {
-    "mocha": "~1.7.0"
+    "mocha": "~1.7.0",
+    "coffee-script": "~1.7.1",
+    "iced-coffee-script": "~1.7.1"
   },
   "optionalDependencies": {},
   "engines": {
