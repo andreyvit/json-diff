@@ -10,7 +10,7 @@
   "main": "lib/index.js",
   "bin": "bin/json-diff.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha",
+    "test": "./node_modules/mocha/bin/mocha test/*.coffee",
     "cov":  "rm -rf lib-cov; jscoverage lib lib-cov; env JSLIB=lib-cov mocha -R dot && env JSLIB=lib-cov mocha -R html-cov >coverage.html; open coverage.html"
   },
   "dependencies": {
