@@ -1,1 +1,3 @@
 --reporter spec
+--compilers coffee:coffee-script/register
+--compilers iced:iced-coffee-script/register
