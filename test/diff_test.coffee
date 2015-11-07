@@ -89,3 +89,6 @@ describe 'diffString', ->
 
   it "should produce the expected colored result for the example JSON files", ->
     assert.equal diffString(a, b), readExampleFile('result-colored.jsdiff')
+
+  it "return an empty string when no diff found", ->
+    assert.equal diffString(a, a), ''

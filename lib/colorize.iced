@@ -52,7 +52,9 @@ subcolorizeToCallback = (key, diff, output, color, indent) ->
       output color, "#{indent}]"
 
     else
-      output(color, indent + prefix + JSON.stringify(diff))
+      if diff == 0 or diff
+        output(color, indent + prefix + JSON.stringify(diff))
+
 
 
 colorizeToCallback = (diff, output) ->

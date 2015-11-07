@@ -11,7 +11,7 @@
   "bin": "bin/json-diff.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha test/*.coffee",
-    "cov":  "rm -rf lib-cov; jscoverage lib lib-cov; env JSLIB=lib-cov mocha -R dot && env JSLIB=lib-cov mocha -R html-cov >coverage.html; open coverage.html"
+    "cov": "rm -rf lib-cov; jscoverage lib lib-cov; env JSLIB=lib-cov mocha -R dot && env JSLIB=lib-cov mocha -R html-cov >coverage.html; open coverage.html"
   },
   "dependencies": {
     "dreamopt": "~0.6.0",
@@ -19,9 +19,9 @@
     "cli-color": "~0.1.6"
   },
   "devDependencies": {
-    "mocha": "~1.7.0",
     "coffee-script": "~1.7.1",
-    "iced-coffee-script": "~1.7.1"
+    "iced-coffee-script": "^1.8.0-d",
+    "mocha": "~1.7.0"
   },
   "optionalDependencies": {},
   "engines": {
