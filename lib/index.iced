@@ -5,12 +5,9 @@
 isScalar = (obj) -> (typeof obj isnt 'object')
 
 
-objectDiff = (obj1, obj2) ->
+objectDiff = (obj1, obj2, options = {}) ->
   result = {}
   score = 0
-
-  keys1 = Object.keys(obj1)
-  keys2 = Object.keys(obj2)
 
   for own key, value1 of obj1 when !(key of obj2)
     result["#{key}__deleted"] = value1
@@ -23,7 +20,7 @@ objectDiff = (obj1, obj2) ->
   for own key, value1 of obj1 when key of obj2
     score += 20
     value2 = obj2[key]
-    [subscore, change] = diffWithScore(value1, value2)
+    [subscore, change] = diffWithScore(value1, value2, options)
     if change
       result[key] = change
       # console.log "key #{key} subscore=#{subscore}"
@@ -78,7 +75,7 @@ descalarize = (item, originals) ->
     item
 
 
-arrayDiff = (obj1, obj2, stats) ->
+arrayDiff = (obj1, obj2, options = {}) ->
   originals1 = { __next: 1 }
   seq1 = scalarize(obj1, originals1)
   originals2 = { __next: originals1.__next }
@@ -93,7 +90,7 @@ arrayDiff = (obj1, obj2, stats) ->
 
   allEqual = yes
   for [op, i1, i2, j1, j2] in opcodes
-    if op isnt 'equal'
+    if !(op is 'equal' or (options.keysOnly and op is 'replace'))
       allEqual = no
 
     switch op
@@ -105,7 +102,7 @@ arrayDiff = (obj1, obj2, stats) ->
               throw new AssertionError("internal bug: isScalarized(item, originals1) != isScalarized(item, originals2) for item #{JSON.stringify(item)}")
             item1 = descalarize(item, originals1)
             item2 = descalarize(item, originals2)
-            change = diff(item1, item2)
+            change = diff(item1, item2, options)
             if change
               result.push ['~', change]
               allEqual = no
@@ -123,12 +120,21 @@ arrayDiff = (obj1, obj2, stats) ->
           result.push ['+', descalarize(seq2[j], originals2)]
           score -= 5
       when 'replace'
-        for i in [i1 ... i2]
-          result.push ['-', descalarize(seq1[i], originals1)]
-          score -= 5
-        for j in [j1 ... j2]
-          result.push ['+', descalarize(seq2[j], originals2)]
-          score -= 5
+        if !options.keysOnly
+          for i in [i1 ... i2]
+            result.push ['-', descalarize(seq1[i], originals1)]
+            score -= 5
+          for j in [j1 ... j2]
+            result.push ['+', descalarize(seq2[j], originals2)]
+            score -= 5
+        else
+          for i in [i1 ... i2]
+            change = diff(descalarize(seq1[i], originals1), descalarize(seq2[i - i1 + j1], originals2), options)
+            if change
+              result.push ['~', change]
+              allEqual = no
+            else
+              result.push [' ']
 
   if allEqual or (opcodes.length is 0)
     result = undefined
@@ -139,32 +145,35 @@ arrayDiff = (obj1, obj2, stats) ->
   return [score, result]
 
 
-diffWithScore = (obj1, obj2) ->
+diffWithScore = (obj1, obj2, options = {}) ->
   type1 = extendedTypeOf obj1
   type2 = extendedTypeOf obj2
 
   if type1 == type2
     switch type1
       when 'object'
-        return objectDiff(obj1, obj2)
+        return objectDiff(obj1, obj2, options)
       when 'array'
-        return arrayDiff(obj1, obj2)
+        return arrayDiff(obj1, obj2, options)
 
-  if obj1 != obj2
-    [0, { __old: obj1, __new: obj2 }]
+  if !options.keysOnly
+    if obj1 != obj2
+      [0, { __old: obj1, __new: obj2 }]
+    else
+      [100, undefined]
   else
     [100, undefined]
 
-diff = (obj1, obj2) ->
-  [score, change] = diffWithScore(obj1, obj2)
+diff = (obj1, obj2, options = {}) ->
+  [score, change] = diffWithScore(obj1, obj2, options)
   return change
 
-diffScore = (obj1, obj2) ->
-  [score, change] = diffWithScore(obj1, obj2)
+diffScore = (obj1, obj2, options = {}) ->
+  [score, change] = diffWithScore(obj1, obj2, options)
   return score
 
-diffString = (obj1, obj2, options) ->
-  return colorize(diff(obj1, obj2), options)
+diffString = (obj1, obj2, colorizeOptions, diffOptions = {}) ->
+  return colorize(diff(obj1, obj2, diffOptions), colorizeOptions)
 
 
 
