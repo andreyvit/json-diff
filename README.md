@@ -22,7 +22,7 @@ Simple:
 Detailed:
 
     % json-diff --help
-    Usage: json-diff [-vjC] first.json second.json
+    Usage: json-diff [-vjCk] first.json second.json
 
     Arguments:
       first.json            Old file
@@ -32,6 +32,7 @@ Detailed:
       -v, --verbose         Output progress info
       -C, --[no-]color      Colored output
       -j, --raw-json        Display raw JSON encoding of the diff
+      -k, --keys-only       Compare only the keys, ignore the differences in values
       -h, --help            Display this usage information
 
 
@@ -40,6 +41,7 @@ Features
 
 * colorized, diff-like output
 * fuzzy matching of modified array elements (when array elements are object hierarchies)
+* compare only the json structure (keys), ignoring the values
 * reasonable test coverage (far from 100%, though)
 
 
