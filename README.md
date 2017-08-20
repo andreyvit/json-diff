@@ -12,6 +12,16 @@ Installation
     npm install json-diff
 
 
+Contribution policy
+-------------------
+
+1. This project is maintained thanks to your contributions! Please send pull requests.
+
+2. I will merge any pull request that adds something useful, does not break existing things, has reasonable code quality and provides/updates tests where appropriate.
+
+3. Anyone who gets a significant pull request merged gets commit access to the repository.
+
+
 Usage
 -----
 
