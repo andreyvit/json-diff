@@ -39,11 +39,14 @@ module.exports = (argv) ->
 
   options.color ?= tty.isatty(process.stdout.fd)
 
-  if options.raw
-    process.stderr.write "Serializing JSON output...\n"  if options.verbose
-    process.stdout.write JSON.stringify(result, null, 2)
+  if result
+    if options.raw
+      process.stderr.write "Serializing JSON output...\n"  if options.verbose
+      process.stdout.write JSON.stringify(result, null, 2)
+    else
+      process.stderr.write "Producing colored output...\n"  if options.verbose
+      process.stdout.write colorize(result, color: options.color)
   else
-    process.stderr.write "Producing colored output...\n"  if options.verbose
-    process.stdout.write colorize(result, color: options.color)
+    process.stderr.write "No diff" if options.verbose
 
   process.exit 1 if result
