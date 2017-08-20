@@ -5,3 +5,4 @@
 /test
 /lib-cov
 coverage.html
+yarn.lock
