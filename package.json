@@ -20,7 +20,8 @@
   "dependencies": {
     "dreamopt": "~0.6.0",
     "difflib": "~0.2.1",
-    "cli-color": "~0.1.6"
+    "cli-color": "~0.1.6",
+    "iced-runtime": "^1.0.3"
   },
   "devDependencies": {
     "coffee-script": "~1.7.1",
