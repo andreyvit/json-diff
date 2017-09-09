@@ -13,7 +13,7 @@
   "main": "lib/index.js",
   "bin": "bin/json-diff.js",
   "scripts": {
-    "prepare": "./node_modules/.bin/coffee-script -c lib",
+    "prepare": "./node_modules/.bin/coffee -c lib",
     "test": "./node_modules/mocha/bin/mocha test/*.coffee",
     "cov": "rm -rf lib-cov; jscoverage lib lib-cov; env JSLIB=lib-cov mocha -R dot && env JSLIB=lib-cov mocha -R html-cov >coverage.html; open coverage.html"
   },
