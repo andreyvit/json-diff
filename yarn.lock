@@ -8,13 +8,11 @@ cli-color@~0.1.6:
   dependencies:
     es5-ext "0.8.x"
 
-coffee-script@~1.7.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/coffee-script/-/coffee-script-1.7.1.tgz#62996a861780c75e6d5069d13822723b73404bfc"
-  dependencies:
-    mkdirp "~0.3.5"
+coffee-script@^1.12.7:
+  version "1.12.7"
+  resolved "https://registry.yarnpkg.com/coffee-script/-/coffee-script-1.12.7.tgz#c05dae0cb79591d05b3070a8433a98c9a89ccc53"
 
-commander@0.6.1, "commander@>= 0.5.2":
+commander@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-0.6.1.tgz#fa68a14f6a945d54dbbe50d8cdb3320e9e3b1a06"
 
@@ -34,16 +32,6 @@ difflib@~0.2.1:
   dependencies:
     heap ">= 0.2.0"
 
-docco@~0.6.2:
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/docco/-/docco-0.6.3.tgz#c47b5823d79563d6fc3abd49f3de48986e5522ee"
-  dependencies:
-    commander ">= 0.5.2"
-    fs-extra ">= 0.6.0"
-    highlight.js ">= 8.0.x"
-    marked ">= 0.2.7"
-    underscore ">= 1.0.0"
-
 dreamopt@~0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/dreamopt/-/dreamopt-0.6.0.tgz#d813ccdac8d39d8ad526775514a13dda664d6b4b"
@@ -54,18 +42,6 @@ es5-ext@0.8.x:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/es5-ext/-/es5-ext-0.8.2.tgz#aba8d9e1943a895ac96837a62a39b3f55ecd94ab"
 
-"fs-extra@>= 0.6.0":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-4.0.1.tgz#7fc0c6c8957f983f57f306a24e5b9ddd8d0dd880"
-  dependencies:
-    graceful-fs "^4.1.2"
-    jsonfile "^3.0.0"
-    universalify "^0.1.0"
-
-graceful-fs@^4.1.2, graceful-fs@^4.1.6:
-  version "4.1.11"
-  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
-
 growl@1.6.x:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/growl/-/growl-1.6.1.tgz#c4d9bbae8f9a572295da062b03cd73e1ef2e14b2"
@@ -74,38 +50,12 @@ growl@1.6.x:
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/heap/-/heap-0.2.6.tgz#087e1f10b046932fc8594dd9e6d378afc9d1e5ac"
 
-"highlight.js@>= 8.0.x":
-  version "9.12.0"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.12.0.tgz#e6d9dbe57cbefe60751f02af336195870c90c01e"
-
-iced-coffee-script@^1.8.0-d:
-  version "1.8.0-e"
-  resolved "https://registry.yarnpkg.com/iced-coffee-script/-/iced-coffee-script-1.8.0-e.tgz#e9d3e17b870fca8179fd0f6254e2761afce5a136"
-  dependencies:
-    docco "~0.6.2"
-    iced-runtime ">=0.0.1"
-    mkdirp "~0.3.5"
-
-iced-runtime@>=0.0.1:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/iced-runtime/-/iced-runtime-1.0.3.tgz#2d4f4fb999ab7aa5430b193c77a7fce4118319ce"
-
 jade@0.26.3:
   version "0.26.3"
   resolved "https://registry.yarnpkg.com/jade/-/jade-0.26.3.tgz#8f10d7977d8d79f2f6ff862a81b0513ccb25686c"
   dependencies:
     commander "0.6.1"
     mkdirp "0.3.0"
-
-jsonfile@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/jsonfile/-/jsonfile-3.0.1.tgz#a5ecc6f65f53f662c4415c7675a0331d0992ec66"
-  optionalDependencies:
-    graceful-fs "^4.1.6"
-
-"marked@>= 0.2.7":
-  version "0.3.6"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.6.tgz#b2c6c618fccece4ef86c4fc6cb8a7cbf5aeda8d7"
 
 mkdirp@0.3.0:
   version "0.3.0"
@@ -114,10 +64,6 @@ mkdirp@0.3.0:
 mkdirp@0.3.3:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.3.3.tgz#595e251c1370c3a68bab2136d0e348b8105adf13"
-
-mkdirp@~0.3.5:
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.3.5.tgz#de3e5f8961c88c787ee1368df849ac4413eca8d7"
 
 mocha@~1.7.0:
   version "1.7.4"
@@ -138,14 +84,6 @@ ms@0.3.0:
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
-
-"underscore@>= 1.0.0":
-  version "1.8.3"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.8.3.tgz#4f3fb53b106e6097fcf9cb4109f2a5e9bdfa5022"
-
-universalify@^0.1.0:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/universalify/-/universalify-0.1.1.tgz#fa71badd4437af4c148841e3b3b165f9e9e590b7"
 
 wordwrap@>=0.0.2:
   version "1.0.0"

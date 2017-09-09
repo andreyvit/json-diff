@@ -22,12 +22,8 @@ module.exports = (argv) ->
   process.stderr.write "#{JSON.stringify(options, null, 2)}\n"  if options.verbose
 
   process.stderr.write "Loading files...\n"  if options.verbose
-  await
-    fs.readFile options.file1, 'utf8', defer(err1, data1)
-    fs.readFile options.file2, 'utf8', defer(err2, data2)
-
-  throw err1 if err1
-  throw err2 if err2
+  data1 = fs.readFileSync(options.file1, 'utf8')
+  data2 = fs.readFileSync(options.file2, 'utf8')
 
   process.stderr.write "Parsing old file...\n"  if options.verbose
   json1 = JSON.parse(data1)
