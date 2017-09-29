@@ -65,6 +65,9 @@ describe 'diff', ->
     it "should return undefined for two arrays with identical, empty array contents", ->
       assert.deepEqual undefined, diff([[]], [[]])
 
+    it "should return undefined for two arrays with identical, array contents including 'null'", ->
+      assert.deepEqual undefined, diff([1, null, null], [1, null, null])
+
     it "should return undefined for two arrays with identical, repeated contents", ->
       assert.deepEqual undefined, diff([{ a: 1, b: 2 }, { a: 1, b: 2 }], [{ a: 1, b: 2 }, { a: 1, b: 2 }])
 
