@@ -47,9 +47,9 @@ Detailed:
 
 In javascript (ES5):
 
-    var diffString = require('json-diff').diffString;
+    var jsonDiff = require('json-diff')
     
-    console.log(diffString({ foo: 'bar' }, { foo: 'baz' }));
+    console.log(jsonDiff.diffString({ foo: 'bar' }, { foo: 'baz' }));
     
     // Output:
     //  {
@@ -57,12 +57,18 @@ In javascript (ES5):
     // +  foo: "baz"
     //  }
     
+    console.log(jsonDiff.diff({ foo: 'bar' }, { foo: 'baz' }));
+    
+    // Output:
+    // { foo: { __old: 'bar', __new: 'baz' } }
+    
 
 In javascript (ES6+):
 
-    import { diffString } from 'json-diff';
+    import { diffString, diff } from 'json-diff';
     
     console.log(diffString({ foo: 'bar' }, { foo: 'baz' }));
+    console.log(diff({ foo: 'bar' }, { foo: 'baz' }));
 
 Features
 --------
