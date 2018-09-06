@@ -9,7 +9,7 @@ Does exactly what you think it does:
 Installation
 ------------
 
-    npm install json-diff
+    npm install -g json-diff
 
 
 Contribution policy
