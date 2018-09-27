@@ -5,7 +5,7 @@
   ],
   "name": "json-diff",
   "description": "JSON diff",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "homepage": "https://github.com/andreyvit/json-diff",
   "repository": {
     "url": "git@github.com:andreyvit/json-diff.git"
