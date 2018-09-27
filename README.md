@@ -45,6 +45,30 @@ Detailed:
       -k, --keys-only       Compare only the keys, ignore the differences in values
       -h, --help            Display this usage information
 
+In javascript (ES5):
+
+    var jsonDiff = require('json-diff')
+    
+    console.log(jsonDiff.diffString({ foo: 'bar' }, { foo: 'baz' }));
+    
+    // Output:
+    //  {
+    // -  foo: "bar"
+    // +  foo: "baz"
+    //  }
+    
+    console.log(jsonDiff.diff({ foo: 'bar' }, { foo: 'baz' }));
+    
+    // Output:
+    // { foo: { __old: 'bar', __new: 'baz' } }
+    
+
+In javascript (ES6+):
+
+    import { diffString, diff } from 'json-diff';
+    
+    console.log(diffString({ foo: 'bar' }, { foo: 'baz' }));
+    console.log(diff({ foo: 'bar' }, { foo: 'baz' }));
 
 Features
 --------
