@@ -1,6 +1,8 @@
 JSON structural diff
 ====================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/andreyvit/json-diff.svg)](https://greenkeeper.io/)
+
 Does exactly what you think it does:
 
 ![Screenshot](https://github.com/andreyvit/json-diff/raw/master/doc/screenshot.png)
