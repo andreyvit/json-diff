@@ -2,7 +2,7 @@
 { extendedTypeOf } = require './util'
 { colorize } = require './colorize'
 
-isScalar = (obj) -> (typeof obj isnt 'object')
+isScalar = (obj) -> (typeof obj isnt 'object' || obj == null)
 
 
 objectDiff = (obj1, obj2, options = {}) ->
