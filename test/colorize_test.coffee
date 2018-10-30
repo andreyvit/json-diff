@@ -7,14 +7,29 @@ describe 'colorizeToArray', ->
   it "should return ' <value>' for a scalar value", ->
     assert.deepEqual [' 42'], colorizeToArray(42)
 
+  it "should return ' <value>' for 'null' value", ->
+    assert.deepEqual [' null'], colorizeToArray(null)
+
+  it "should return ' <value>' for 'false' value", ->
+    assert.deepEqual [' false'], colorizeToArray(false)
+
   it "should return '-<old value>', '+<new value>' for a scalar diff", ->
     assert.deepEqual ['-42', '+10'], colorizeToArray({ __old: 42, __new: 10 })
+
+  it "should return '-<old value>', '+<new value>' for 'null' and 'false' diff", ->
+    assert.deepEqual ['-false', '+null'], colorizeToArray({ __old: false, __new: null })
 
   it "should return '-<removed key>: <removed value>' for an object diff with a removed key", ->
     assert.deepEqual [' {', '-  foo: 42', ' }'], colorizeToArray({ foo__deleted: 42 })
 
   it "should return '+<added key>: <added value>' for an object diff with an added key", ->
     assert.deepEqual [' {', '+  foo: 42', ' }'], colorizeToArray({ foo__added: 42 })
+
+  it "should return '+<added key>: <added value>' for an object diff with an added key with 'null' value", ->
+    assert.deepEqual [' {', '+  foo: null', ' }'], colorizeToArray({ foo__added: null })
+
+  it "should return '+<added key>: <added value>' for an object diff with an added key with 'false' value", ->
+    assert.deepEqual [' {', '+  foo: false', ' }'], colorizeToArray({ foo__added: false })
 
   it "should return '+<added key>: <added stringified value>' for an object diff with an added key and a non-scalar value", ->
     assert.deepEqual [' {', '+  foo: {', '+    bar: 42', '+  }', ' }'], colorizeToArray({ foo__added: { bar: 42 } })
