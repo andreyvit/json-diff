@@ -3,10 +3,11 @@ tty = require 'tty'
 
 { diff } = require './index'
 { colorize } = require './colorize'
+{ sortJson } = require 'sort-json'
 
 module.exports = (argv) ->
   options = require('dreamopt') [
-    "Usage: json-diff [-vjCk] first.json second.json"
+    "Usage: json-diff [-vjCks] first.json second.json"
 
     "Arguments:"
     "  first.json              Old file #var(file1) #required"
@@ -17,6 +18,7 @@ module.exports = (argv) ->
     "  -C, --[no-]color        Colored output"
     "  -j, --raw-json          Display raw JSON encoding of the diff #var(raw)"
     "  -k, --keys-only         Compare only the keys, ignore the differences in values #var(keysOnly)"
+    "  -s, --sort              Sort both JSON files by keys, and sort primitive values in arrays before comparing"
   ], argv
 
   process.stderr.write "#{JSON.stringify(options, null, 2)}\n"  if options.verbose
@@ -29,6 +31,12 @@ module.exports = (argv) ->
   json1 = JSON.parse(data1)
   process.stderr.write "Parsing new file...\n"  if options.verbose
   json2 = JSON.parse(data2)
+
+  if options.sort
+    process.stderr.write "Sorting old file...\n"  if options.verbose
+    json1 = sortJson(json1)
+    process.stderr.write "Sorting new file...\n"  if options.verbose
+    json2 = sortJson(json2)
 
   process.stderr.write "Running diff...\n"  if options.verbose
   result = diff(json1, json2, options)

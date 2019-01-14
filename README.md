@@ -43,6 +43,7 @@ Detailed:
       -C, --[no-]color      Colored output
       -j, --raw-json        Display raw JSON encoding of the diff
       -k, --keys-only       Compare only the keys, ignore the differences in values
+      -s, --sort            Sort both JSON files by keys, and sort primitive values in arrays before comparing
       -h, --help            Display this usage information
 
 In javascript (ES5):

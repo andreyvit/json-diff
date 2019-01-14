@@ -1,0 +1,23 @@
+{
+  "fubar": {
+    "kaboom": {
+      "note": "We're running dangerously low on metasyntatic variables here",
+      "afoo": {
+        "abar": "raba",
+        "aboz": "zozoba",
+        "afubar": "rabufa"
+      },
+      "akaboom": 200
+    }
+  },
+  "bar": 100,
+  "foo": 42,
+  "boz": [
+    5,
+    6,
+    7,
+    0,
+    1,
+    4
+  ]
+}

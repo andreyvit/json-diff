@@ -1,6 +1,7 @@
 fs     = require 'fs'
 Path   = require 'path'
 assert = require 'assert'
+sortJson = require 'sort-json'
 
 { diff, diffString } = require "../#{process.env.JSLIB or 'lib'}/index"
 
@@ -178,3 +179,20 @@ describe 'diffString', ->
 
   it "return an empty string when no diff found", ->
     assert.equal diffString(a, a), ''
+
+describe 'diff({sort: true})', ->
+
+  readExampleFile = (file) -> fs.readFileSync(Path.join(__dirname, '../example', file), 'utf8')
+  b = JSON.parse(readExampleFile('b.json'))
+  c = JSON.parse(readExampleFile('c.json'))
+
+  console.log diff(b, c)
+
+  it "return differences when they are found", ->
+    assert.deepEqual { boz: [ [ '+', 5 ], [ '+', 6 ], [ '+', 7 ], [ ' ', 0 ], [ ' ', 1 ], [ ' ', 4 ], [ '-', 5 ], [ '-', 6 ], [ '-', 7 ] ] }, diff(b, c)
+
+  b = sortJson(b)
+  c = sortJson(c)
+
+  it "return undefined for two objects with identical contents", ->
+    assert.deepEqual undefined, diff(b, c, {sort: true})

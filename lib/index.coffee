@@ -81,6 +81,10 @@ arrayDiff = (obj1, obj2, options = {}) ->
   originals2 = { __next: originals1.__next }
   seq2 = scalarize(obj2, originals2, originals1)
 
+  if options.sort
+    seq1.sort()
+    seq2.sort()
+
   opcodes = new SequenceMatcher(null, seq1, seq2).getOpcodes()
 
   # console.log "arrayDiff:\nobj1 = #{JSON.stringify(obj1, null, 2)}\nobj2 = #{JSON.stringify(obj2, null, 2)}\nseq1 = #{JSON.stringify(seq1, null, 2)}\nseq2 = #{JSON.stringify(seq2, null, 2)}\nopcodes = #{JSON.stringify(opcodes, null, 2)}"
