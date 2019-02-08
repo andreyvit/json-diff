@@ -1,4 +1,5 @@
 assert = require 'assert'
+BigNumber = require 'bignumber.js'
 
 { colorize, colorizeToArray } = require "../#{process.env.JSLIB or 'lib'}/colorize"
 
@@ -43,4 +44,16 @@ describe 'colorize', ->
 
   it "should return a string without ANSI escapes on { color: false }", ->
     assert.equal colorize({ foo: { __old: 42, __new: 10 } }, color: no), " {\n-  foo: 42\n+  foo: 10\n }\n"
+
+
+
+describe 'Big Number Support', ->
+
+  it "should handle a diff with Big Number values", ->
+    assert.deepEqual colorize({ foo: { __old: BigNumber('3e+5000'), __new: BigNumber('98765432100123456789') } }, {bigNumberSupport: true, color: no}), " {\n-  foo: 3e+5000\n+  foo: 98765432100123456789\n }\n"
+
+  it "should handle a diff for an array with Big Number values", ->
+    assert.deepEqual ['-3e+5000', '+98765432100123456789'], colorizeToArray({ __old: BigNumber('3e+5000'), __new: BigNumber('98765432100123456789') }, bigNumberSupport: true)
+
+
 
