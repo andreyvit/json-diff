@@ -146,8 +146,8 @@ arrayDiff = (obj1, obj2, options = {}) ->
 
 
 diffWithScore = (obj1, obj2, options = {}) ->
-  type1 = extendedTypeOf obj1
-  type2 = extendedTypeOf obj2
+  type1 = extendedTypeOf(obj1, options.bigNumberSupport)
+  type2 = extendedTypeOf(obj2, options.bigNumberSupport)
 
   if type1 == type2
     switch type1
@@ -173,6 +173,8 @@ diffScore = (obj1, obj2, options = {}) ->
   return score
 
 diffString = (obj1, obj2, colorizeOptions, diffOptions = {}) ->
+  if colorizeOptions != undefined and colorizeOptions.bigNumberSupport
+    diffOptions.bigNumberSupport = true
   return colorize(diff(obj1, obj2, diffOptions), colorizeOptions)
 
 

@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+bignumber.js@^7.0.0:
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-7.2.1.tgz#80c048759d826800807c4bfd521e50edbba57a5f"
+  integrity sha512-S4XzBk5sMB+Rcb/LNcpzXr57VRTxgAvaAEDAl1AwRx27j00hT84O6OkteE7u8UB3NuaaygCRrEpqox4uDOrbdQ==
+
 cli-color@~0.1.6:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/cli-color/-/cli-color-0.1.7.tgz#adc3200fa471cc211b0da7f566b71e98b9d67347"
@@ -84,6 +89,13 @@ ms@0.3.0:
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
+
+"true-json-bigint@^0.4.4":
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/true-json-bigint/-/true-json-bigint-0.4.4.tgz#82a2a04a959958ae0eeb819e62481db4717bdf60"
+  integrity sha512-RE5QJtnrn50WicRYER45GNfnd/CTULiaW3EdtalvAFuMqt/e7XB5mZArEvBRItr8+/KxCpYMMDwcuGoXId/4KA==
+  dependencies:
+    bignumber.js "^7.0.0"
 
 wordwrap@>=0.0.2:
   version "1.0.0"
