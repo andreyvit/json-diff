@@ -1,6 +1,6 @@
 BigNumber = require 'bignumber.js'
 
-extendedTypeOf = (obj, bigNumberSupport = false) ->
+extendedTypeOf = (obj, bigNumberSupport) ->
   result = typeof obj
   if !obj?
     'null'

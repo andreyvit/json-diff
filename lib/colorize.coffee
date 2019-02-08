@@ -33,7 +33,7 @@ subcolorizeToCallback = (key, diff, output, color, indent, options) ->
 
       looksLikeDiff = yes
       for item in diff
-        if (extendedTypeOf(item) isnt 'array') or !((item.length is 2) or ((item.length is 1) and (item[0] is ' '))) or !(typeof(item[0]) is 'string') or item[0].length != 1 or !(item[0] in [' ', '-', '+', '~'])
+        if (extendedTypeOf(item, options.bigNumberSupport) isnt 'array') or !((item.length is 2) or ((item.length is 1) and (item[0] is ' '))) or !(typeof(item[0]) is 'string') or item[0].length != 1 or !(item[0] in [' ', '-', '+', '~'])
           looksLikeDiff = no
 
       if looksLikeDiff
