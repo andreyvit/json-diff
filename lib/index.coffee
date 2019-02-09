@@ -1,3 +1,5 @@
+BigNumber = require 'bignumber.js'
+
 { SequenceMatcher } = require 'difflib'
 { extendedTypeOf } = require './util'
 { colorize } = require './colorize'
@@ -157,7 +159,12 @@ diffWithScore = (obj1, obj2, options = {}) ->
         return arrayDiff(obj1, obj2, options)
 
   if !options.keysOnly
-    if obj1 != obj2
+    if options.bigNumberSupport and BigNumber.isBigNumber(obj1) and BigNumber.isBigNumber(obj2)
+      if !obj1.isEqualTo(obj2)
+        [0, { __old: obj1, __new: obj2 }]
+      else
+        [100, undefined]
+    else if obj1 != obj2
       [0, { __old: obj1, __new: obj2 }]
     else
       [100, undefined]
