@@ -14,7 +14,7 @@ module.exports = (argv) ->
     "  second.json             New file #var(file2) #required"
 
     "General options:"
-    "  -b, --bigNumberSupport        Parse larger numbers to bignumber.js objects"
+    "  -b, --bigNumberSupport  Handle large numbers as bignumber.js objects to ensure correct diffs for them"
     "  -v, --verbose           Output progress info"
     "  -C, --[no-]color        Colored output"
     "  -j, --raw-json          Display raw JSON encoding of the diff #var(raw)"
