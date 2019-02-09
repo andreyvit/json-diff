@@ -42,7 +42,8 @@ subcolorizeToCallback = (key, diff, output, color, indent, options) ->
             output(' ', subindent + '...')
           else
             unless op in [' ', '~', '+', '-']
-              throw new Error("Unexpected op '#{op}' in #{JSONbig.stringify(diff, null, 2)}")
+              stringifiedJSON = if options.bigNumberSupport then JSONbig.stringify(diff, null, 2) else JSON.stringify(diff, null, 2)
+              throw new Error("Unexpected op '#{op}' in #{stringifiedJSON}")
             op = ' ' if op is '~'
             subcolorizeToCallback('', subvalue, output, op, subindent, options)
       else
@@ -53,7 +54,8 @@ subcolorizeToCallback = (key, diff, output, color, indent, options) ->
 
     else
       if diff == 0 or diff
-        output(color, indent + prefix + JSONbig.stringify(diff))
+        stringifiedJSON = if options.bigNumberSupport then JSONbig.stringify(diff, null, 2) else JSON.stringify(diff, null, 2)
+        output(color, indent + prefix + stringifiedJSON)
 
 
 
