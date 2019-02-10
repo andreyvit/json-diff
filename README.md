@@ -39,11 +39,12 @@ Detailed:
       second.json           New file
 
     General options:
-      -v, --verbose         Output progress info
-      -C, --[no-]color      Colored output
-      -j, --raw-json        Display raw JSON encoding of the diff
-      -k, --keys-only       Compare only the keys, ignore the differences in values
-      -h, --help            Display this usage information
+      -b, --bigNumberSupport  Handle large numbers as bignumber.js objects to ensure correct diffs for them"
+      -v, --verbose           Output progress info
+      -C, --[no-]color        Colored output
+      -j, --raw-json          Display raw JSON encoding of the diff
+      -k, --keys-only         Compare only the keys, ignore the differences in values
+      -h, --help              Display this usage information
 
 In javascript (ES5):
 
