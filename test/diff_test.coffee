@@ -1,3 +1,4 @@
+BigNumber = require 'bignumber.js'
 fs     = require 'fs'
 Path   = require 'path'
 assert = require 'assert'
@@ -178,3 +179,24 @@ describe 'diffString', ->
 
   it "return an empty string when no diff found", ->
     assert.equal diffString(a, a), ''
+
+
+describe 'Big Number Support', ->
+
+  it "should handle a diff with different Big Number values", ->
+    assert.deepEqual { __old: BigNumber('3e+5000'), __new: BigNumber('98765432100123456789') }, diff(BigNumber('3e+5000'), BigNumber('98765432100123456789'), bigNumberSupport: true)
+
+  it "should handle a diff with equal Big Number values", ->
+    assert.deepEqual undefined, diff(BigNumber('3e+5000'), BigNumber('3e+5000'), bigNumberSupport: true)
+
+  it "should handle a diff for an array with Big Number values", ->
+    assert.deepEqual [['~', {__old: BigNumber('3e+5000'), __new: BigNumber('98765432100123456789')}], ['~', {__old: BigNumber('3e+6000'), __new: BigNumber('12345678901234567890')}]], diff([BigNumber('3e+5000'), BigNumber('3e+6000')], [BigNumber('98765432100123456789'), BigNumber('12345678901234567890')], bigNumberSupport: true)
+
+  it "should handle a diff when old value is an ordinary number and new value contains a Big Number value", ->
+    assert.deepEqual { __old: 1, __new: BigNumber('98765432100123456789') }, diff(1, BigNumber('98765432100123456789'), bigNumberSupport: true)
+
+  it "should handle a diff when old value contains a Big Number value and new value is an ordinary number", ->
+    assert.deepEqual { __old: BigNumber('3e+5000'), __new: 2}, diff(BigNumber('3e+5000'), 2, bigNumberSupport: true)
+
+it "should handle a diff for an array with Big Number and ordinary integers", ->
+      assert.deepEqual [['+', 2], ['~', {__old: BigNumber('3e+5000'), __new: BigNumber('12345678901234567890')}],['-', 1]], diff([BigNumber('3e+5000'), 1], [2, BigNumber('12345678901234567890')], bigNumberSupport: true)

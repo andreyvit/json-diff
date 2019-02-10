@@ -1,4 +1,5 @@
 fs  = require 'fs'
+JSONbig = require 'true-json-bigint'
 tty = require 'tty'
 
 { diff } = require './index'
@@ -13,6 +14,7 @@ module.exports = (argv) ->
     "  second.json             New file #var(file2) #required"
 
     "General options:"
+    "  -b, --bigNumberSupport  Handle large numbers as bignumber.js objects to ensure correct diffs for them"
     "  -v, --verbose           Output progress info"
     "  -C, --[no-]color        Colored output"
     "  -j, --raw-json          Display raw JSON encoding of the diff #var(raw)"
@@ -26,9 +28,9 @@ module.exports = (argv) ->
   data2 = fs.readFileSync(options.file2, 'utf8')
 
   process.stderr.write "Parsing old file...\n"  if options.verbose
-  json1 = JSON.parse(data1)
+  json1 = if options.bigNumberSupport then JSONbig.parse(data1) else JSON.parse(data1)
   process.stderr.write "Parsing new file...\n"  if options.verbose
-  json2 = JSON.parse(data2)
+  json2 = if options.bigNumberSupport then JSONbig.parse(data2) else JSON.parse(data2)
 
   process.stderr.write "Running diff...\n"  if options.verbose
   result = diff(json1, json2, options)
@@ -38,10 +40,10 @@ module.exports = (argv) ->
   if result
     if options.raw
       process.stderr.write "Serializing JSON output...\n"  if options.verbose
-      process.stdout.write JSON.stringify(result, null, 2)
+      process.stdout.write if options.bigNumberSupport then JSONbig.stringify(result, null, 2) else JSON.stringify(result, null, 2)
     else
       process.stderr.write "Producing colored output...\n"  if options.verbose
-      process.stdout.write colorize(result, color: options.color)
+      process.stdout.write colorize(result, {color: options.color, bigNumberSupport: if options.bigNumberSupport then true else false })
   else
     process.stderr.write "No diff" if options.verbose
 

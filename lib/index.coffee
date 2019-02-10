@@ -1,3 +1,5 @@
+BigNumber = require 'bignumber.js'
+
 { SequenceMatcher } = require 'difflib'
 { extendedTypeOf } = require './util'
 { colorize } = require './colorize'
@@ -36,14 +38,14 @@ objectDiff = (obj1, obj2, options = {}) ->
   return [score, result]
 
 
-findMatchingObject = (item, index, fuzzyOriginals) ->
+findMatchingObject = (item, index, fuzzyOriginals, options) ->
   # console.log "findMatchingObject: " + JSON.stringify({item, fuzzyOriginals}, null, 2)
   bestMatch = null
 
   matchIndex = 0
   for own key, candidate of fuzzyOriginals when key isnt '__next'
     indexDistance = Math.abs(matchIndex - index)
-    if extendedTypeOf(item) == extendedTypeOf(candidate)
+    if extendedTypeOf(item, options.bigNumberSupport) == extendedTypeOf(candidate, options.bigNumberSupport)
       score = diffScore(item, candidate)
       if !bestMatch || score > bestMatch.score || (score == bestMatch.score && indexDistance < bestMatch.indexDistance)
         bestMatch = { score, key, indexDistance }
@@ -53,11 +55,11 @@ findMatchingObject = (item, index, fuzzyOriginals) ->
   bestMatch
 
 
-scalarize = (array, originals, fuzzyOriginals) ->
+scalarize = (array, originals, fuzzyOriginals, options) ->
   for item, index in array
     if isScalar item
       item
-    else if fuzzyOriginals && (bestMatch = findMatchingObject(item, index, fuzzyOriginals)) && bestMatch.score > 40 && !originals[bestMatch.key]?
+    else if fuzzyOriginals && (bestMatch = findMatchingObject(item, index, fuzzyOriginals, options)) && bestMatch.score > 40 && !originals[bestMatch.key]?
       originals[bestMatch.key] = item
       bestMatch.key
     else
@@ -77,9 +79,9 @@ descalarize = (item, originals) ->
 
 arrayDiff = (obj1, obj2, options = {}) ->
   originals1 = { __next: 1 }
-  seq1 = scalarize(obj1, originals1)
+  seq1 = scalarize(obj1, originals1, undefined, options)
   originals2 = { __next: originals1.__next }
-  seq2 = scalarize(obj2, originals2, originals1)
+  seq2 = scalarize(obj2, originals2, originals1, options)
 
   opcodes = new SequenceMatcher(null, seq1, seq2).getOpcodes()
 
@@ -146,8 +148,8 @@ arrayDiff = (obj1, obj2, options = {}) ->
 
 
 diffWithScore = (obj1, obj2, options = {}) ->
-  type1 = extendedTypeOf obj1
-  type2 = extendedTypeOf obj2
+  type1 = extendedTypeOf(obj1, options.bigNumberSupport)
+  type2 = extendedTypeOf(obj2, options.bigNumberSupport)
 
   if type1 == type2
     switch type1
@@ -157,7 +159,12 @@ diffWithScore = (obj1, obj2, options = {}) ->
         return arrayDiff(obj1, obj2, options)
 
   if !options.keysOnly
-    if obj1 != obj2
+    if options.bigNumberSupport and BigNumber.isBigNumber(obj1) and BigNumber.isBigNumber(obj2)
+      if !obj1.isEqualTo(obj2)
+        [0, { __old: obj1, __new: obj2 }]
+      else
+        [100, undefined]
+    else if obj1 != obj2
       [0, { __old: obj1, __new: obj2 }]
     else
       [100, undefined]
@@ -173,6 +180,10 @@ diffScore = (obj1, obj2, options = {}) ->
   return score
 
 diffString = (obj1, obj2, colorizeOptions, diffOptions = {}) ->
+  if colorizeOptions != undefined and colorizeOptions.bigNumberSupport
+    diffOptions.bigNumberSupport = true
+  if diffOptions != undefined and diffOptions.bigNumberSupport
+    colorizeOptions.bigNumberSupport = true
   return colorize(diff(obj1, obj2, diffOptions), colorizeOptions)
 
 

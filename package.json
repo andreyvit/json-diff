@@ -20,7 +20,8 @@
   "dependencies": {
     "cli-color": "~0.1.6",
     "difflib": "~0.2.1",
-    "dreamopt": "~0.6.0"
+    "dreamopt": "~0.6.0",
+    "true-json-bigint": "^0.4.4"
   },
   "devDependencies": {
     "coffee-script": "^1.12.7",
