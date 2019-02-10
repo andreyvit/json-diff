@@ -199,4 +199,4 @@ describe 'Big Number Support', ->
     assert.deepEqual { __old: BigNumber('3e+5000'), __new: 2}, diff(BigNumber('3e+5000'), 2, bigNumberSupport: true)
 
 it "should handle a diff for an array with Big Number and ordinary integers", ->
-    assert.deepEqual [['~', {__old: BigNumber('3e+5000'), __new: 2}], ['~', {__old: 1, __new: BigNumber('12345678901234567890')}]], diff([BigNumber('3e+5000'), 1], [2, BigNumber('12345678901234567890')], bigNumberSupport: true)
+      assert.deepEqual [['+', 2], ['~', {__old: BigNumber('3e+5000'), __new: BigNumber('12345678901234567890')}],['-', 1]], diff([BigNumber('3e+5000'), 1], [2, BigNumber('12345678901234567890')], bigNumberSupport: true)
