@@ -12,6 +12,13 @@ subcolorizeToCallback = (key, diff, output, color, indent) ->
   prefix    = if key then "#{key}: " else ''
   subindent = indent + '  '
 
+  outputElisions = (n) ->
+    if n < 5
+      for [0 ... n]
+        output(' ', subindent + '...')
+    else
+      output(' ', subindent + "... (#{n} entries)")
+
   switch extendedTypeOf(diff)
     when 'object'
       if ('__old' of diff) and ('__new' of diff) and (Object.keys(diff).length is 2)
@@ -37,14 +44,18 @@ subcolorizeToCallback = (key, diff, output, color, indent) ->
           looksLikeDiff = no
 
       if looksLikeDiff
+        elisionCount = 0
         for [op, subvalue] in diff
           if op is ' ' && !subvalue?
-            output(' ', subindent + '...')
+            elisionCount += 1
           else
+            outputElisions(elisionCount) if elisionCount != 0
+            elisionCount = 0
             unless op in [' ', '~', '+', '-']
               throw new Error("Unexpected op '#{op}' in #{JSON.stringify(diff, null, 2)}")
             op = ' ' if op is '~'
             subcolorizeToCallback('', subvalue, output, op, subindent)
+        outputElisions(elisionCount) if elisionCount != 0
       else
         for subvalue in diff
           subcolorizeToCallback('', subvalue, output, color, subindent)
