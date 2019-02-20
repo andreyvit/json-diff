@@ -1,0 +1,54 @@
+{
+  "movies": [
+    {
+      "title": "Star Wars: Episode IV - A New Hope",
+      "directors": ["George Lucas"],
+      "year": 1977
+    },
+    {
+      "title": "Starship Troopers",
+      "directors": ["Paul Verhoeven"],
+      "year": 1997
+    },
+    {
+      "title": "Fight Club",
+      "directors": ["David Fincher"],
+      "year": 1999
+    },
+    {
+      "title": "Groundhog Day",
+      "directors": ["Harold Ramis"],
+      "year": 1993
+    },
+    {
+      "title": "Serenity",
+      "directors": ["Joss Wheldon"],
+      "year": 2005
+    },
+    {
+      "title": "Tron",
+      "directors": ["Steven Lisberger"],
+      "year": 1982
+    },
+    {
+      "title": "The Matrix",
+      "directors": ["Lana Wachowski", "Lilly Wachowski"],
+      "year": 1999
+    },
+    {
+      "title": "Blade Runner",
+      "directors": ["Ridley Scott"],
+      "year": 1982
+    },
+    {
+      "title": "Monty Python and the Holy Grail",
+      "directors": ["Terry Gilliam"],
+      "year": 1975
+    },
+    {
+      "title": "2001: A Space Odyssey",
+      "directors": ["Stanley Kubrick"],
+      "year": 1968
+    }
+  ]
+}
