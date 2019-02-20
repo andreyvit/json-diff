@@ -34,6 +34,10 @@ describe 'colorizeToArray', ->
     console.log "output:\n%s", colorizeToArray(input).join("\n")
     assert.deepEqual colorizeToArray(input), expected
 
+  it "should collapse long sequences of identical subobjects into one '...'", ->
+    input = [ [" "], [" "], [" "], [" "], [" "], [" "], [" "], ["~", {"foo__added": 42}], [" "] ]
+    expected = [" [", "   ... (7 entries)", "   {", "+    foo: 42", "   }", "   ...", " ]"]
+    assert.deepEqual colorizeToArray(input), expected
 
 
 describe 'colorize', ->

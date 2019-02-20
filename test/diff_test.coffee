@@ -169,12 +169,16 @@ describe 'diffString', ->
   readExampleFile = (file) -> fs.readFileSync(Path.join(__dirname, '../example', file), 'utf8')
   a = JSON.parse(readExampleFile('a.json'))
   b = JSON.parse(readExampleFile('b.json'))
+  big_a = JSON.parse(readExampleFile('big_a.json'))
+  big_b = JSON.parse(readExampleFile('big_b.json'))
 
   it "should produce the expected result for the example JSON files", ->
     assert.equal diffString(a, b, color: no), readExampleFile('result.jsdiff')
+    assert.equal diffString(big_a, big_b, color: no), readExampleFile('big_result.jsdiff')
 
   it "should produce the expected colored result for the example JSON files", ->
     assert.equal diffString(a, b), readExampleFile('result-colored.jsdiff')
+    assert.equal diffString(big_a, big_b, color: no), readExampleFile('big_result-colored.jsdiff')
 
   it "return an empty string when no diff found", ->
     assert.equal diffString(a, a), ''
