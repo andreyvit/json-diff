@@ -23,8 +23,8 @@
     "dreamopt": "~0.6.0"
   },
   "devDependencies": {
-    "coffee-script": "^1.12.7",
-    "mocha": "~1.7.0"
+    "coffeescript": "^2.5.0",
+    "mocha": "^7.0.0"
   },
   "optionalDependencies": {},
   "engines": {
