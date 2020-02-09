@@ -1,6 +1,7 @@
 fs     = require 'fs'
 Path   = require 'path'
 assert = require 'assert'
+eol    = require 'eol'
 
 { diff, diffString } = require "../#{process.env.JSLIB or 'lib'}/index"
 
@@ -166,7 +167,7 @@ describe 'diff({keysOnly: true})', ->
 
 describe 'diffString', ->
 
-  readExampleFile = (file) -> fs.readFileSync(Path.join(__dirname, '../example', file), 'utf8')
+  readExampleFile = (file) -> eol.lf(fs.readFileSync(Path.join(__dirname, '../example', file), 'utf8'))
   a = JSON.parse(readExampleFile('a.json'))
   b = JSON.parse(readExampleFile('b.json'))
 
