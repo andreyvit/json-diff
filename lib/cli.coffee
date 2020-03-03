@@ -45,4 +45,4 @@ module.exports = (argv) ->
   else
     process.stderr.write "No diff" if options.verbose
 
-  process.exit 1 if result
+  process.exit 0 if result
