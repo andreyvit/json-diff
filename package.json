@@ -25,7 +25,6 @@
   },
   "devDependencies": {
     "coffeescript": "^2.5.1",
-    "eol": "^0.9.1",
     "mocha": "^7.0.1"
   },
   "engines": {

@@ -1,8 +1,8 @@
-fs = require 'fs'
+fs  = require 'fs'
 tty = require 'tty'
 
-{diff} = require './index'
-{colorize} = require './colorize'
+{ diff } = require './index'
+{ colorize } = require './colorize'
 
 module.exports = (argv) ->
   options = require('dreamopt') [
