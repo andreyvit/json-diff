@@ -175,10 +175,10 @@
   dependencies:
     "heap" ">= 0.2.0"
 
-"dreamopt@~0.8.0":
-  "integrity" "sha1-W8yAvnCX5F/EicNCQFq2gUCowdk="
-  "resolved" "https://registry.npmjs.org/dreamopt/-/dreamopt-0.8.0.tgz"
-  "version" "0.8.0"
+"dreamopt@~0.6.0":
+  "integrity" "sha1-2BPM2sjTnYrVJndVFKE92mZNa0s="
+  "resolved" "https://registry.npmjs.org/dreamopt/-/dreamopt-0.6.0.tgz"
+  "version" "0.6.0"
   dependencies:
     "wordwrap" ">=0.0.2"
 
