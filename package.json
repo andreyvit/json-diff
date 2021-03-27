@@ -1,7 +1,8 @@
 {
   "author": "Andrey Tarantsov <andreyvit@me.com>",
   "contributors": [
-    "Gavriel Fleischer <flocsy@gmail.com>"
+    "Gavriel Fleischer <flocsy@gmail.com>",
+    "Pablo Matias Gomez <pablomatiasgomez@gmail.com>"
   ],
   "name": "json-diff",
   "description": "JSON diff",
@@ -20,13 +21,13 @@
   "dependencies": {
     "cli-color": "~0.1.6",
     "difflib": "~0.2.1",
-    "dreamopt": "~0.6.0"
+    "dreamopt": "~0.8.0"
   },
   "devDependencies": {
-    "coffee-script": "^1.12.7",
-    "mocha": "~1.7.0"
+    "coffeescript": "^2.5.1",
+    "eol": "^0.9.1",
+    "mocha": "^7.0.1"
   },
-  "optionalDependencies": {},
   "engines": {
     "node": "*"
   }

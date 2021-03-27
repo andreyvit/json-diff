@@ -1,8 +1,8 @@
-fs  = require 'fs'
+fs = require 'fs'
 tty = require 'tty'
 
-{ diff } = require './index'
-{ colorize } = require './colorize'
+{diff} = require './index'
+{colorize} = require './colorize'
 
 module.exports = (argv) ->
   options = require('dreamopt') [
@@ -17,7 +17,10 @@ module.exports = (argv) ->
     "  -C, --[no-]color        Colored output"
     "  -j, --raw-json          Display raw JSON encoding of the diff #var(raw)"
     "  -k, --keys-only         Compare only the keys, ignore the differences in values #var(keysOnly)"
+    "  -s, --show-keys KEYS    Always print this comma separated keys with their value if they are part of an object with any diff. #var(showKeys)"
   ], argv
+
+  options.showKeys = if options.showKeys then options.showKeys.split(",") else [];
 
   process.stderr.write "#{JSON.stringify(options, null, 2)}\n"  if options.verbose
 

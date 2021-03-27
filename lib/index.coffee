@@ -9,11 +9,14 @@ objectDiff = (obj1, obj2, options = {}) ->
   result = {}
   score = 0
 
+  allEqual = yes
   for own key, value1 of obj1 when !(key of obj2)
+    allEqual = no
     result["#{key}__deleted"] = value1
     score -= 30
 
   for own key, value2 of obj2 when !(key of obj1)
+    allEqual = no
     result["#{key}__added"] = value2
     score -= 30
 
@@ -22,11 +25,14 @@ objectDiff = (obj1, obj2, options = {}) ->
     value2 = obj2[key]
     [subscore, change] = diffWithScore(value1, value2, options)
     if change
+      allEqual = no
       result[key] = change
       # console.log "key #{key} subscore=#{subscore}"
+    else if options.showKeys and options.showKeys.includes(key)
+      result[key] = value1
     score += Math.min(20, Math.max(-10, subscore / 5))  # BATMAN!
 
-  if Object.keys(result).length is 0
+  if allEqual
     [score, result] = [100 * Math.max(Object.keys(obj1).length, 0.5), undefined]
   else
     score = Math.max(0, score)

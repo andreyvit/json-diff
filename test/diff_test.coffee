@@ -83,6 +83,18 @@ describe 'diff', ->
     it "should return [..., ['~', <diff>], ...] for two arrays when an item has been modified (note: involves a crazy heuristic)", ->
       assert.deepEqual [[' '], ['~', { foo: { __old: 20, __new: 21 } }], [' ']], diff([{ foo: 10, bar: { bbbar: 10, bbboz: 11 } }, { foo: 20, bar: { bbbar: 50, bbboz: 25 } }, { foo: 30, bar: { bbbar: 92, bbboz: 34 } }], [{ foo: 10, bar: { bbbar: 10, bbboz: 11 } }, { foo: 21, bar: { bbbar: 50, bbboz: 25 } }, { foo: 30, bar: { bbbar: 92, bbboz: 34 } }])
 
+describe 'diff({ showKeys: foo,bar }', ->
+
+  it "should return keys foo and bar although they have no changes", ->
+    assert.deepEqual { foo: 42, bar: 10, bbar__added: 5 }, diff({ foo: 42, bar: 10 }, { foo: 42, bar: 10, bbar: 5 }, {showKeys: ["foo", "bar"]})
+  it "should return keys foo (with addition) and bar (with no changes) ", ->
+    assert.deepEqual { foo__added: 42, bar: 10, bbar__added: 5 }, diff({ bar: 10 }, { foo: 42, bar: 10, bbar: 5 }, {showKeys: ["foo", "bar"]})
+  it "should return keys foo and bar (with addition) ", ->
+    assert.deepEqual { foo__added: 42, bar__added: 10 }, diff({ bbar: 5 }, { foo: 42, bar: 10, bbar: 5 }, {showKeys: ["foo", "bar"]})
+  it "should return nothing as the entire object is equal, no matter that show keys has some of them", ->
+    assert.deepEqual undefined, diff({ foo: 42, bar: 10, bbar: 5 }, { foo: 42, bar: 10, bbar: 5 }, {showKeys: ["foo", "bar"]})
+  it "should return the keys of an entire object although it has no changes ", ->
+    assert.deepEqual { foo: { a: 1, b: 2, c: [1, 2] }, bbar__added: 5 }, diff({ foo: { a: 1, b: 2, c: [1, 2] } }, { foo: { a: 1, b: 2, c: [1, 2] }, bbar: 5 }, {showKeys: ["foo", "bar"]})
 
 describe 'diff({keysOnly: true})', ->
 
