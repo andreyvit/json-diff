@@ -43,6 +43,7 @@ Detailed:
       -C, --[no-]color      Colored output
       -j, --raw-json        Display raw JSON encoding of the diff
       -k, --keys-only       Compare only the keys, ignore the differences in values
+      -s, --show-keys KEYS  Always print this comma separated keys with their value if they are part of an object with any diff. #var(showKeys)"
       -h, --help            Display this usage information
 
 In javascript (ES5):
@@ -76,6 +77,7 @@ Features
 * colorized, diff-like output
 * fuzzy matching of modified array elements (when array elements are object hierarchies)
 * compare only the json structure (keys), ignoring the values
+* always show given keys for an object that has differences
 * reasonable test coverage (far from 100%, though)
 
 
