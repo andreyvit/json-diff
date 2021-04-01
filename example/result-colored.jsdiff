@@ -12,6 +12,7 @@
    fubar: {
      kaboom: {
        afoo: {
+[32m+        emptystring: ""[39m
 [31m-        aboz: "zoba"[39m
 [32m+        aboz: "zozoba"[39m
        }

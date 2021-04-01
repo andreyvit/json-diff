@@ -13,6 +13,7 @@
     "kaboom": {
       "note": "We're running dangerously low on metasyntatic variables here",
       "afoo": {
+        "emptystring": "",
         "abar": "raba",
         "aboz": "zozoba",
         "afubar": "rabufa"

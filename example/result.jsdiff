@@ -12,6 +12,7 @@
    fubar: {
      kaboom: {
        afoo: {
++        emptystring: ""
 -        aboz: "zoba"
 +        aboz: "zozoba"
        }
