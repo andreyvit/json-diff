@@ -15,15 +15,18 @@
   "scripts": {
     "prepare": "coffee -c lib",
     "test": "mocha test/*.coffee",
-    "cov": "rm -rf lib-cov; jscoverage lib lib-cov; env JSLIB=lib-cov mocha -R dot && env JSLIB=lib-cov mocha -R html-cov >coverage.html; open coverage.html"
+    "cov": "rm -rf lib-cov; jscoverage lib lib-cov; env JSLIB=lib-cov mocha -R dot && env JSLIB=lib-cov mocha -R html-cov >coverage.html; open coverage.html",
+    "bundle": "npm run prepare; ./node_modules/.bin/esbuild --bundle lib/index.js --outfile=jsondiff.js"
   },
   "dependencies": {
+    "assert": "^2.0.0",
     "cli-color": "~0.1.6",
     "difflib": "~0.2.1",
     "dreamopt": "~0.6.0"
   },
   "devDependencies": {
     "coffee-script": "^1.12.7",
+    "esbuild": "^0.13.15",
     "mocha": "~1.7.0"
   },
   "optionalDependencies": {},

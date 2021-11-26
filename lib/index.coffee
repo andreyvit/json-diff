@@ -1,9 +1,9 @@
+globalThis.process = {env:{}};
 { SequenceMatcher } = require 'difflib'
 { extendedTypeOf } = require './util'
 { colorize } = require './colorize'
 
 isScalar = (obj) -> (typeof obj isnt 'object' || obj == null)
-
 
 objectDiff = (obj1, obj2, options = {}) ->
   result = {}
@@ -176,5 +176,5 @@ diffString = (obj1, obj2, colorizeOptions, diffOptions = {}) ->
   return colorize(diff(obj1, obj2, diffOptions), colorizeOptions)
 
 
-
+globalThis.jsonDiff={diff,diffString};
 module.exports = { diff, diffString }
