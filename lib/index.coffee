@@ -23,7 +23,9 @@ objectDiff = (obj1, obj2, options = {}) ->
     [subscore, change] = diffWithScore(value1, value2, options)
     if change
       result[key] = change
-      # console.log "key #{key} subscore=#{subscore}"
+    else
+      result[key] = value1
+      # console.log "key #{key} subscore=#{subscore} #{value1}"
     score += Math.min(20, Math.max(-10, subscore / 5))  # BATMAN!
 
   if Object.keys(result).length is 0
@@ -54,16 +56,26 @@ findMatchingObject = (item, index, fuzzyOriginals) ->
 
 
 scalarize = (array, originals, fuzzyOriginals) ->
+  fuzzyMatches = []
+  if fuzzyOriginals
+    # Find best fuzzy match for each object in the array
+    keyScores = {}
+    for item, index in array
+      if isScalar item
+        continue
+      bestMatch = findMatchingObject(item, index, fuzzyOriginals)
+      if !keyScores[bestMatch.key] || bestMatch.score > keyScores[bestMatch.key].score
+          keyScores[bestMatch.key] = {score: bestMatch.score, index}
+    for key, match of keyScores
+      fuzzyMatches[match.index] = key
+      
   for item, index in array
     if isScalar item
       item
-    else if fuzzyOriginals && (bestMatch = findMatchingObject(item, index, fuzzyOriginals)) && bestMatch.score > 40 && !originals[bestMatch.key]?
-      originals[bestMatch.key] = item
-      bestMatch.key
-    else
-      proxy = "__$!SCALAR" + originals.__next++
-      originals[proxy] = item
-      proxy
+    else 
+      key = fuzzyMatches[index] || "__$!SCALAR" + originals.__next++
+      originals[key] = item
+      key
 
 isScalarized = (item, originals) ->
   (typeof item is 'string') && (item of originals)
@@ -107,7 +119,7 @@ arrayDiff = (obj1, obj2, options = {}) ->
               result.push ['~', change]
               allEqual = no
             else
-              result.push [' ']
+              result.push [' ', item1]
           else
             result.push [' ', item]
           score += 10
@@ -137,7 +149,7 @@ arrayDiff = (obj1, obj2, options = {}) ->
               result.push [' ']
 
   if allEqual or (opcodes.length is 0)
-    result = undefined
+    # result = undefined
     score  = 100
   else
     score  = Math.max(0, score)
@@ -160,7 +172,7 @@ diffWithScore = (obj1, obj2, options = {}) ->
     if obj1 != obj2
       [0, { __old: obj1, __new: obj2 }]
     else
-      [100, undefined]
+      [100, obj1]
   else
     [100, undefined]
 
