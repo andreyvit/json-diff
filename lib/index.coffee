@@ -23,9 +23,7 @@ objectDiff = (obj1, obj2, options = {}) ->
     [subscore, change] = diffWithScore(value1, value2, options)
     if change
       result[key] = change
-    else
-      result[key] = value1
-      # console.log "key #{key} subscore=#{subscore} #{value1}"
+      # console.log "key #{key} subscore=#{subscore}"
     score += Math.min(20, Math.max(-10, subscore / 5))  # BATMAN!
 
   if Object.keys(result).length is 0
@@ -119,7 +117,7 @@ arrayDiff = (obj1, obj2, options = {}) ->
               result.push ['~', change]
               allEqual = no
             else
-              result.push [' ', item1]
+              result.push [' ']
           else
             result.push [' ', item]
           score += 10
@@ -149,7 +147,7 @@ arrayDiff = (obj1, obj2, options = {}) ->
               result.push [' ']
 
   if allEqual or (opcodes.length is 0)
-    # result = undefined
+    result = undefined
     score  = 100
   else
     score  = Math.max(0, score)
@@ -172,7 +170,7 @@ diffWithScore = (obj1, obj2, options = {}) ->
     if obj1 != obj2
       [0, { __old: obj1, __new: obj2 }]
     else
-      [100, obj1]
+      [100, undefined]
   else
     [100, undefined]
 
