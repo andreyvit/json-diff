@@ -77,6 +77,11 @@ describe 'diff', ->
     it "should return [..., ['+', <added item>], ...] for two arrays when the second array has an extra value", ->
       assert.deepEqual [[' '], ['+', { foo: 20 }], [' ']], diff([{ foo: 10 }, { foo: 30 }], [{ foo: 10 }, { foo: 20 }, { foo: 30 }])
 
+    it "should return [['+', <added item>], ..., ['+', <added item>]] for two arrays containg objects of 3 or more properties when the second array has extra values (fixes issue #57)", ->
+      assert.deepEqual([ [ "+", { "key1": "b", "key2": "1", "key3": "m" } ], [ " " ], [ "+", { "key1": "c", "key2": "1", "key3": "dm" } ]], 
+                        diff([ { "key1": "a", "key2": "12", "key3": "cm" } ], [ { "key1": "b", "key2": "1", "key3": "m" }, { "key1": "a", "key2": "12", "key3": "cm" }, { "key1": "c", "key2": "1", "key3": "dm" } ])
+      )
+
     it "should return [..., ['+', <added item>], ...] for two arrays when the second array has a new but nearly identical object added", ->
       assert.deepEqual [[' '],[ '+', { name: 'Foo', a: 3, b: 1, c: 1 }], [' ']], diff([{ "name": "Foo", "a": 3, "b": 1 },{ foo: 10 }], [{ "name": "Foo", "a": 3, "b": 1 },{ "name": "Foo", "a": 3, "b": 1, "c": 1 },{ foo: 10 }])
 
