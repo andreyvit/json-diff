@@ -160,10 +160,10 @@ describe 'diff({keysOnly: true})', ->
       assert.deepEqual undefined, diff([{ a: 1, b: 2 }, { a: 1, b: 2 }], [{ a: 1, b: 2 }, { a: 1, b: 2 }], {keysOnly: true})
 
     it "should return [..., ['-', <removed item>], ...] for two arrays when the second array is missing a value", ->
-      assert.deepEqual [[' '], ['-', { foo: 20 }], [' ']], diff([{ foo: 10 }, { foo: 20 }, { foo: 30 }], [{ foo: 10 }, { foo: 30 }], {keysOnly: true})
+      assert.deepEqual [[' '], ['-', { bar: 20 }], [' ']], diff([{ foo: 10 }, { bar: 20 }, { bletch: 30 }], [{ foo: 10 }, { bletch: 30 }], {keysOnly: true})
 
     it "should return [..., ['+', <added item>], ...] for two arrays when the second array has an extra value", ->
-      assert.deepEqual [[' '], ['+', { foo: 20 }], [' ']], diff([{ foo: 10 }, { foo: 30 }], [{ foo: 10 }, { foo: 20 }, { foo: 30 }], {keysOnly: true})
+      assert.deepEqual [[' '], ['+', { bar: 20 }], [' ']], diff([{ foo: 10 }, { bletch: 30 }], [{ foo: 10 }, { bar: 20 }, { bletch: 30 }], {keysOnly: true})
 
     it "should return [..., ['~', <diff>], ...] for two arrays when an item has been modified (note: involves a crazy heuristic)", ->
       assert.deepEqual undefined, diff([{ foo: 10, bar: { bbbar: 10, bbboz: 11 } }, { foo: 20, bar: { bbbar: 50, bbboz: 25 } }, { foo: 30, bar: { bbbar: 92, bbboz: 34 } }], [{ foo: 10, bar: { bbbar: 10, bbboz: 11 } }, { foo: 21, bar: { bbbar: 50, bbboz: 25 } }, { foo: 30, bar: { bbbar: 92, bbboz: 34 } }], {keysOnly: true})

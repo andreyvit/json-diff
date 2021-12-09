@@ -13,11 +13,11 @@
   "main": "lib/index.js",
   "bin": "bin/json-diff.js",
   "scripts": {
-    "prepare": "coffee -c lib",
-    "test": "mocha test/*.coffee",
+    "test": "coffee -c test; mocha test/*.js",
     "cov": "rm -rf lib-cov; jscoverage lib lib-cov; env JSLIB=lib-cov mocha -R dot && env JSLIB=lib-cov mocha -R html-cov >coverage.html; open coverage.html"
   },
   "dependencies": {
+    "assert": "^2.0.0",
     "cli-color": "~0.1.6",
     "coffeescript": "^2.6.1",
     "difflib": "~0.2.1",
@@ -31,7 +31,7 @@
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.2.0",
-    "mocha": "~1.7.0"
+    "mocha": "9.1.3"
   },
   "engines": {
     "node": "*"
