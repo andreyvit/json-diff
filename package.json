@@ -19,14 +19,15 @@
   },
   "dependencies": {
     "cli-color": "~0.1.6",
+    "coffeescript": "^2.6.1",
     "difflib": "~0.2.1",
-    "dreamopt": "~0.6.0"
+    "dreamopt": "~0.6.0",
+    "jscoverage": "^0.6.0"
   },
   "devDependencies": {
     "coffee-script": "^1.12.7",
     "mocha": "~1.7.0"
   },
-  "optionalDependencies": {},
   "engines": {
     "node": "*"
   }
