@@ -38,7 +38,7 @@ module.exports = (argv) ->
   if result
     if options.raw
       process.stderr.write "Serializing JSON output...\n"  if options.verbose
-      process.stdout.write JSON.stringify(result, null, 2) + '\n'
+      process.stdout.write JSON.stringify(result, null, 2)
     else
       process.stderr.write "Producing colored output...\n"  if options.verbose
       process.stdout.write colorize(result, color: options.color)
