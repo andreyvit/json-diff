@@ -17,15 +17,13 @@
     "cov": "rm -rf lib-cov; jscoverage lib lib-cov; env JSLIB=lib-cov mocha -R dot && env JSLIB=lib-cov mocha -R html-cov >coverage.html; open coverage.html"
   },
   "dependencies": {
-    "assert": "^2.0.0",
     "cli-color": "~0.1.6",
-    "coffeescript": "^2.6.1",
     "difflib": "~0.2.1",
     "dreamopt": "~0.6.0",
     "jscoverage": "^0.6.0"
   },
   "devDependencies": {
-    "coffee-script": "^1.12.7",
+    "coffeescript": "^2.6.1",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.3",
