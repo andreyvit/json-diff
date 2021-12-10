@@ -50,12 +50,15 @@ In javascript (ES5):
     var jsonDiff = require('json-diff')
     
     console.log(jsonDiff.diffString({ foo: 'bar' }, { foo: 'baz' }));
-    
+        
     // Output:
     //  {
     // -  foo: "bar"
     // +  foo: "baz"
     //  }
+    
+    // without console colors
+    console.log(jsonDiff.diffString({ foo: 'bar' }, { foo: 'baz' }, {color:false}));
     
     console.log(jsonDiff.diff({ foo: 'bar' }, { foo: 'baz' }));
     
