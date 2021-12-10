@@ -54,16 +54,26 @@ findMatchingObject = (item, index, fuzzyOriginals) ->
 
 
 scalarize = (array, originals, fuzzyOriginals) ->
+  fuzzyMatches = []
+  if fuzzyOriginals
+    # Find best fuzzy match for each object in the array
+    keyScores = {}
+    for item, index in array
+      if isScalar item
+        continue
+      bestMatch = findMatchingObject(item, index, fuzzyOriginals)
+      if !keyScores[bestMatch.key] || bestMatch.score > keyScores[bestMatch.key].score
+          keyScores[bestMatch.key] = {score: bestMatch.score, index}
+    for key, match of keyScores
+      fuzzyMatches[match.index] = key
+      
   for item, index in array
     if isScalar item
       item
-    else if fuzzyOriginals && (bestMatch = findMatchingObject(item, index, fuzzyOriginals)) && bestMatch.score > 40 && !originals[bestMatch.key]?
-      originals[bestMatch.key] = item
-      bestMatch.key
-    else
-      proxy = "__$!SCALAR" + originals.__next++
-      originals[proxy] = item
-      proxy
+    else 
+      key = fuzzyMatches[index] || "__$!SCALAR" + originals.__next++
+      originals[key] = item
+      key
 
 isScalarized = (item, originals) ->
   (typeof item is 'string') && (item of originals)
