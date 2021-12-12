@@ -139,7 +139,6 @@ describe 'diff({full: true})', ->
     it "should return an array showing no changes for any element for two arrays with identical contents", ->
       assert.deepEqual [ [ " ", 10 ], [ " ", 20 ], [ " ", 30 ] ], diff([10, 20, 30], [10, 20, 30], {full: true})
 
-    it "should return undefined for two arrays with when an item has been modified", ->
     it "should return [[' ', <unchanged item>], ['-', <removed item>], [' ', <unchanged item>]] for two arrays when the second array is missing a value", ->
       assert.deepEqual [ [ " ", 10 ], [ "-", 20 ], [ "+", 42 ], [ " ", 30 ] ], diff([10, 20, 30], [10, 42, 30], {full: true})
 
@@ -152,33 +151,33 @@ describe 'diff({full: true})', ->
   describe 'with arrays of objects', ->
 
     it "should return an array of unchanged elements for two arrays with identical contents", ->
-      assert.deepEqual [['~', { foo: 10 }], ['~', { foo: 20 }], ['~', { foo: 30 }]], diff([{ foo: 10 }, { foo: 20 }, { foo: 30 }], [{ foo: 10 }, { foo: 20 }, { foo: 30 }], {full: true})
+      assert.deepEqual [[' ', { foo: 10 }], [' ', { foo: 20 }], [' ', { foo: 30 }]], diff([{ foo: 10 }, { foo: 20 }, { foo: 30 }], [{ foo: 10 }, { foo: 20 }, { foo: 30 }], {full: true})
 
     it "should return an array with an unchanged element for two arrays with identical, empty object contents", ->
-      assert.deepEqual [ [ "~", {} ] ], diff([{ }], [{ }], {full: true})
+      assert.deepEqual [ [ " ", {} ] ], diff([{ }], [{ }], {full: true})
 
     it "should return an array with an unchanged element for two arrays with identical, empty array contents", ->
-      assert.deepEqual [ [ "~", [] ] ], diff([[]], [[]], {full: true})
+      assert.deepEqual [ [ " ", [] ] ], diff([[]], [[]], {full: true})
 
     it "should return an array of unchanged elements for two arrays with identical array contents including 'null'", ->
       assert.deepEqual [ [ " ", 1 ], [ " ", null ], [ " ", null ] ], diff([1, null, null], [1, null, null], {full: true})
 
     it "should return an array of unchanged elements for two arrays with identical, repeated contents", ->
-      assert.deepEqual [ [ "~", { "a": 1, "b": 2 } ], [ "~", { "a": 1, "b": 2 } ] ], diff([{ a: 1, b: 2 }, { a: 1, b: 2 }], [{ a: 1, b: 2 }, { a: 1, b: 2 }], {full: true})
+      assert.deepEqual [ [ " ", { "a": 1, "b": 2 } ], [ " ", { "a": 1, "b": 2 } ] ], diff([{ a: 1, b: 2 }, { a: 1, b: 2 }], [{ a: 1, b: 2 }, { a: 1, b: 2 }], {full: true})
 
     it "should return [[' ', <unchanged item>], ['-', <removed item>], [' ', <unchanged item>]] for two arrays when the second array is missing a value", ->
-      assert.deepEqual [ [ "~", { "foo": 10 } ], [ "-", { "foo": 20 } ], [ "~", { "foo": 30 } ] ], diff([{ foo: 10 }, { foo: 20 }, { foo: 30 }], [{ foo: 10 }, { foo: 30 }], {full: true})
+      assert.deepEqual [ [ " ", { "foo": 10 } ], [ "-", { "foo": 20 } ], [ " ", { "foo": 30 } ] ], diff([{ foo: 10 }, { foo: 20 }, { foo: 30 }], [{ foo: 10 }, { foo: 30 }], {full: true})
 
     it "should return [[' ', <unchanged item>], ['+', <added item>], [' ', <unchanged item>]] for two arrays when the second array has an extra value", ->
-      assert.deepEqual [ [ "~", { "foo": 10 } ], [ "+", { "foo": 20 } ], [ "~", { "foo": 30 } ] ], diff([{ foo: 10 }, { foo: 30 }], [{ foo: 10 }, { foo: 20 }, { foo: 30 }], {full: true})
+      assert.deepEqual [ [ " ", { "foo": 10 } ], [ "+", { "foo": 20 } ], [ " ", { "foo": 30 } ] ], diff([{ foo: 10 }, { foo: 30 }], [{ foo: 10 }, { foo: 20 }, { foo: 30 }], {full: true})
 
     it "should return [[' ', <unchanged item>], ['+', <added item>], [' ', <unchanged item>]] for two arrays when the second array has a new but nearly identical object added", ->
-      assert.deepEqual [ [ "~", { "name": "Foo", "a": 3, "b": 1 } ], [ "+", { "name": "Foo", "a": 3, "b": 1, "c": 1 } ], [ "~", { "foo": 10 } ] ], diff([{ "name": "Foo", "a": 3, "b": 1 },{ "foo": 10 }], [{ "name": "Foo", "a": 3, "b": 1 },{ "name": "Foo", "a": 3, "b": 1, "c": 1 },{ "foo": 10 }], {full: true})
+      assert.deepEqual [ [ " ", { "name": "Foo", "a": 3, "b": 1 } ], [ "+", { "name": "Foo", "a": 3, "b": 1, "c": 1 } ], [ " ", { "foo": 10 } ] ], diff([{ "name": "Foo", "a": 3, "b": 1 },{ "foo": 10 }], [{ "name": "Foo", "a": 3, "b": 1 },{ "name": "Foo", "a": 3, "b": 1, "c": 1 },{ "foo": 10 }], {full: true})
 
     it "should return [[' ', <unchanged item>], ['~', <diff>], [' ', <unchanged item>]] for two arrays when an item has been modified", ->
-      assert.deepEqual( [ [ "~", { "foo": 10, "bar": { "bbbar": 10, "bbboz": 11 } } ], 
+      assert.deepEqual( [ [ " ", { "foo": 10, "bar": { "bbbar": 10, "bbboz": 11 } } ], 
                           [ "~", { "foo": { "__old": 20, "__new": 21 }, "bar": { "bbbar": 50, "bbboz": 25 } } ], 
-                          [ "~", { "foo": 30, "bar": { "bbbar": 92, "bbboz": 34 } } ] ], 
+                          [ " ", { "foo": 30, "bar": { "bbbar": 92, "bbboz": 34 } } ] ], 
                           diff([{ foo: 10, bar: { bbbar: 10, bbboz: 11 } }, 
                                 { foo: 20, bar: { bbbar: 50, bbboz: 25 } }, 
                                 { foo: 30, bar: { bbbar: 92, bbboz: 34 } }], 
