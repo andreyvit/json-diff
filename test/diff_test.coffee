@@ -137,7 +137,7 @@ describe 'diff({full: true})', ->
   describe 'with arrays of scalars', ->
 
     it "should return an array showing no changes for any element for two arrays with identical contents", ->
-      assert.deepEqual [ [ " ", 10 ], [ " ", 20 ], [ " ", 30 ] ], diff([10, 20, 30], [10, 20, 30], {full: true})
+      assert.deepEqual [ 10, 20, 30 ], diff([10, 20, 30], [10, 20, 30], {full: true})
 
     it "should return [[' ', <unchanged item>], ['-', <removed item>], [' ', <unchanged item>]] for two arrays when the second array is missing a value", ->
       assert.deepEqual [ [ " ", 10 ], [ "-", 20 ], [ "+", 42 ], [ " ", 30 ] ], diff([10, 20, 30], [10, 42, 30], {full: true})
@@ -151,19 +151,19 @@ describe 'diff({full: true})', ->
   describe 'with arrays of objects', ->
 
     it "should return an array of unchanged elements for two arrays with identical contents", ->
-      assert.deepEqual [[' ', { foo: 10 }], [' ', { foo: 20 }], [' ', { foo: 30 }]], diff([{ foo: 10 }, { foo: 20 }, { foo: 30 }], [{ foo: 10 }, { foo: 20 }, { foo: 30 }], {full: true})
+      assert.deepEqual [{ foo: 10 }, { foo: 20 }, { foo: 30 }], diff([{ foo: 10 }, { foo: 20 }, { foo: 30 }], [{ foo: 10 }, { foo: 20 }, { foo: 30 }], {full: true})
 
     it "should return an array with an unchanged element for two arrays with identical, empty object contents", ->
-      assert.deepEqual [ [ " ", {} ] ], diff([{ }], [{ }], {full: true})
+      assert.deepEqual [ {} ], diff([{ }], [{ }], {full: true})
 
     it "should return an array with an unchanged element for two arrays with identical, empty array contents", ->
-      assert.deepEqual [ [ " ", [] ] ], diff([[]], [[]], {full: true})
+      assert.deepEqual [ [] ], diff([[]], [[]], {full: true})
 
     it "should return an array of unchanged elements for two arrays with identical array contents including 'null'", ->
-      assert.deepEqual [ [ " ", 1 ], [ " ", null ], [ " ", null ] ], diff([1, null, null], [1, null, null], {full: true})
+      assert.deepEqual [ 1, null, null ], diff([1, null, null], [1, null, null], {full: true})
 
     it "should return an array of unchanged elements for two arrays with identical, repeated contents", ->
-      assert.deepEqual [ [ " ", { "a": 1, "b": 2 } ], [ " ", { "a": 1, "b": 2 } ] ], diff([{ a: 1, b: 2 }, { a: 1, b: 2 }], [{ a: 1, b: 2 }, { a: 1, b: 2 }], {full: true})
+      assert.deepEqual [ { "a": 1, "b": 2 }, { "a": 1, "b": 2 } ], diff([{ a: 1, b: 2 }, { a: 1, b: 2 }], [{ a: 1, b: 2 }, { a: 1, b: 2 }], {full: true})
 
     it "should return [[' ', <unchanged item>], ['-', <removed item>], [' ', <unchanged item>]] for two arrays when the second array is missing a value", ->
       assert.deepEqual [ [ " ", { "foo": 10 } ], [ "-", { "foo": 20 } ], [ " ", { "foo": 30 } ] ], diff([{ foo: 10 }, { foo: 20 }, { foo: 30 }], [{ foo: 10 }, { foo: 30 }], {full: true})
