@@ -138,10 +138,6 @@ Run:
 
     npm test
 
-Test coverage report:
-
-    npm run-script cov
-
 Output:
 
     json-diff@0.5.3 test
