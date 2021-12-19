@@ -15,7 +15,7 @@
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
-            "args": ["--raw-json", "--show-equal", "a.json", "b.json"]
+            "args": ["--raw-json", "--full", "a.json", "b.json"]
         }
     ]
 }
