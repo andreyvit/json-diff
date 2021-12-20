@@ -46,7 +46,6 @@ describe 'colorizeToArray', ->
   it "should handle an array diff with subobject diff", ->
     input = [ [" "], ["~", {"foo__added": 42}], [" "] ]
     expected = [" [", "   ...", "   {", "+    foo: 42", "   }", "   ...", " ]"]
-    console.log "output:\n%s", colorizeToArray(input).join("\n")
     assert.deepEqual colorizeToArray(input), expected
 
 
