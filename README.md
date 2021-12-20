@@ -52,12 +52,15 @@ In javascript (ES5):
     var jsonDiff = require('json-diff')
     
     console.log(jsonDiff.diffString({ foo: 'bar' }, { foo: 'baz' }));
-    
+        
     // Output:
     //  {
     // -  foo: "bar"
     // +  foo: "baz"
     //  }
+    
+    // without console colors
+    console.log(jsonDiff.diffString({ foo: 'bar' }, { foo: 'baz' }, {color:false}));
     
     console.log(jsonDiff.diff({ foo: 'bar' }, { foo: 'baz' }));
     
@@ -260,6 +263,10 @@ Output:
 
     90 passing (42ms)
 
+Change Log
+----------
+ * 0.5.5 Fix bug in scalarize fuzzy compare logic
+ * 0.4.0 Add --keys-only feature
 
 License
 -------

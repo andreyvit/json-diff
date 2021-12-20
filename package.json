@@ -8,6 +8,7 @@
   "description": "JSON diff",
   "version": "0.6.0",
   "homepage": "https://github.com/andreyvit/json-diff",
+  "license": "MIT",
   "repository": {
     "url": "git@github.com:andreyvit/json-diff.git"
   },
