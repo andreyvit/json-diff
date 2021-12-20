@@ -130,6 +130,10 @@ Output:
 
     ✔ 25 tests complete (12ms)
 
+Change Log
+----------
+ * 0.5.5 Fix bug in scalarize fuzzy compare logic
+ * 0.4.0 Add --keys-only feature
 
 License
 -------
