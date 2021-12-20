@@ -265,6 +265,7 @@ Output:
 
 Change Log
 ----------
+ * 0.6.0 Convert project code to ES6
  * 0.5.5 Fix bug in scalarize fuzzy compare logic
  * 0.4.0 Add --keys-only feature
 
