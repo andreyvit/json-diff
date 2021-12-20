@@ -6,7 +6,7 @@
   ],
   "name": "json-diff",
   "description": "JSON diff",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "homepage": "https://github.com/andreyvit/json-diff",
   "license": "MIT",
   "repository": {
@@ -20,7 +20,7 @@
     "cov": "rm -rf lib-cov; jscoverage lib lib-cov; env JSLIB=lib-cov mocha -R dot && env JSLIB=lib-cov mocha -R html-cov >coverage.html; open coverage.html"
   },
   "dependencies": {
-    "cli-color": "~0.1.6",
+    "cli-color": "^2.0.0",
     "difflib": "~0.2.1",
     "dreamopt": "~0.8.0",
     "jscoverage": "^0.6.0"
