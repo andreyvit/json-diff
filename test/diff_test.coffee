@@ -102,6 +102,12 @@ describe 'diff', ->
                         diff({"s": [[{ "b": "123" }]]}, {"s": [[{ "b": "abc" }], []]} ) )
 
 
+describe 'diff({sort: true})', ->
+  describe 'with arrays', ->
+    it "should return undefined for two arrays with the same contents in different order", ->
+      assert.deepEqual undefined, diff( [1, undefined, null, true, "", {a:4}, [7, 8]], [[7, 8], {a:4}, true, null, undefined, "", 1], {sort: true})
+
+
 describe 'diff({full: true})', ->
 
   describe 'with simple scalar values', ->
@@ -272,7 +278,6 @@ describe 'diff({keysOnly: true})', ->
 
     it "should return [..., ['~', <diff>], ...] for two arrays when an item has been modified", ->
       assert.deepEqual undefined, diff([{ foo: 10, bar: { bbbar: 10, bbboz: 11 } }, { foo: 20, bar: { bbbar: 50, bbboz: 25 } }, { foo: 30, bar: { bbbar: 92, bbboz: 34 } }], [{ foo: 10, bar: { bbbar: 10, bbboz: 11 } }, { foo: 21, bar: { bbbar: 50, bbboz: 25 } }, { foo: 30, bar: { bbbar: 92, bbboz: 34 } }], {keysOnly: true})
-
 
 describe 'diffString', ->
 
