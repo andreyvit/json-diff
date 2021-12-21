@@ -95,6 +95,13 @@ describe 'diff', ->
                                 { foo: 30, bar: { bbbar: 92, bbboz: 34 } }])
       )
 
+  describe 'with reported bugs', ->
+
+    it "should handle type mismatch during scalarize", ->
+      assert.deepEqual( { "s": [ [ "~", [ [ "~", { "b": { "__old": "123", "__new": "abc" } } ] ] ], [ "+", [] ] ] },  
+                        diff({"s": [[{ "b": "123" }]]}, {"s": [[{ "b": "abc" }], []]} ) )
+
+
 describe 'diff({full: true})', ->
 
   describe 'with simple scalar values', ->
