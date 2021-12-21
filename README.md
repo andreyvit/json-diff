@@ -52,20 +52,24 @@ In javascript (ES5):
     var jsonDiff = require('json-diff')
     
     console.log(jsonDiff.diffString({ foo: 'bar' }, { foo: 'baz' }));
-        
     // Output:
     //  {
     // -  foo: "bar"
     // +  foo: "baz"
     //  }
     
-    // without console colors
+    // As above, but without console colors
     console.log(jsonDiff.diffString({ foo: 'bar' }, { foo: 'baz' }, {color:false}));
     
-    console.log(jsonDiff.diff({ foo: 'bar' }, { foo: 'baz' }));
-    
+    // Raw output:
+    console.log(jsonDiff.diff({ foo: 'bar', b:3}, { foo: 'baz', b:3}));
     // Output:
     // { foo: { __old: 'bar', __new: 'baz' } }
+
+    // Passing in the "full" option:
+    console.log(jsonDiff.diff({ foo: 'bar', b:3}, { foo: 'baz', b:3}, {full:true}));
+    // Output:
+    // { foo: { __old: 'bar', __new: 'baz' }, b: 3 }
     
 
 In javascript (ES6+):
@@ -265,6 +269,8 @@ Output:
 
 Change Log
 ----------
+ * 0.6.2 Provide examples of setting mode from code.
+ * 0.6.1 Return exit code 0. Update cli-color to the latest version.
  * 0.6.0 Convert project code to ES6
  * 0.5.5 Fix bug in scalarize fuzzy compare logic
  * 0.4.0 Add --keys-only feature
