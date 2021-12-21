@@ -269,6 +269,7 @@ Output:
 
 Change Log
 ----------
+ * 0.7.0 Add --sort option
  * 0.6.3 Fix ticket #68
  * 0.6.2 Provide examples of setting mode from code.
  * 0.6.1 Return exit code 0. Update cli-color to the latest version.
