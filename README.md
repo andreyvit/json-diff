@@ -33,19 +33,20 @@ Detailed:
 
     % json-diff --help
 
-    Usage: json-diff [-vCjfk] first.json second.json
+    Usage: json-diff [-vCjfsk] first.json second.json
 
-    Arguments:
-    <first.json>          Old file
-    <second.json>         New file
+        Arguments:
+        <first.json>          Old file
+        <second.json>         New file
 
-    General options:
-    -v, --verbose         Output progress info
-    -C, --[no-]color      Colored output
-    -j, --raw-json        Display raw JSON encoding of the diff
-    -f, --full            Include the equal sections of the document, not just the deltas
-    -k, --keys-only       Compare only the keys, ignore the differences in values
-    -h, --help            Display this usage information
+        General options:
+        -v, --verbose         Output progress info
+        -C, --[no-]color      Colored output
+        -j, --raw-json        Display raw JSON encoding of the diff
+        -f, --full            Include the equal sections of the document, not just the deltas
+        -s, --sort            Sort primitive values in arrays before comparing
+        -k, --keys-only       Compare only the keys, ignore the differences in values
+        -h, --help            Display this usage information
 
 In javascript (ES5):
 
