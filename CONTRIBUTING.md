@@ -10,6 +10,8 @@ Steps to a new release
     * git pull
     * npm ci
     * npm run test
+    * update change log in README
+    * git commit; git push
     * npm version <next.version.number>
     * git push --tags
     * npm publish
