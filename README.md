@@ -33,7 +33,7 @@ Detailed:
 
     % json-diff --help
 
-    Usage: json-diff [-vCjfsk] first.json second.json
+    Usage: json-diff [-vCjfosk] first.json second.json
 
         Arguments:
         <first.json>          Old file
@@ -44,7 +44,7 @@ Detailed:
         -C, --[no-]color        Colored output
         -j, --raw-json          Display raw JSON encoding of the diff
         -f, --full              Include the equal sections of the document, not just the deltas
-        -o, --output-keys KEYS  Always print this comma separated keys, with their value, if they are part of an object with any diff.
+        -o, --output-keys KEYS  Always print these [comma separated] keys, with their values, if they are in an object with a diff
         -s, --sort              Sort primitive values in arrays before comparing
         -k, --keys-only         Compare only the keys, ignore the differences in values
         -h, --help              Display this usage information
@@ -272,6 +272,7 @@ Output:
 
 Change Log
 ----------
+ * 0.7.1 Add --output-keys option
  * 0.7.0 Add --sort option
  * 0.6.3 Fix ticket #68
  * 0.6.2 Provide examples of setting mode from code.
