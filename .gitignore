@@ -3,3 +3,4 @@ node_modules
 /lib-cov
 test/*.js
 coverage.html
+.idea

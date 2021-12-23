@@ -199,7 +199,19 @@ describe 'diff({full: true})', ->
                                 { foo: 30, bar: { bbbar: 92, bbboz: 34 } }], {full: true})
       )
 
-   
+describe 'diff({ outputKeys: foo,bar }', ->
+
+  it "should return keys foo and bar although they have no changes", ->
+    assert.deepEqual { foo: 42, bar: 10, bbar__added: 5 }, diff({ foo: 42, bar: 10 }, { foo: 42, bar: 10, bbar: 5 }, {outputKeys: ["foo", "bar"]})
+  it "should return keys foo (with addition) and bar (with no changes) ", ->
+    assert.deepEqual { foo__added: 42, bar: 10, bbar__added: 5 }, diff({ bar: 10 }, { foo: 42, bar: 10, bbar: 5 }, {outputKeys: ["foo", "bar"]})
+  it "should return keys foo and bar (with addition) ", ->
+    assert.deepEqual { foo__added: 42, bar__added: 10 }, diff({ bbar: 5 }, { foo: 42, bar: 10, bbar: 5 }, {outputKeys: ["foo", "bar"]})
+  it "should return nothing as the entire object is equal, no matter that show keys has some of them", ->
+    assert.deepEqual undefined, diff({ foo: 42, bar: 10, bbar: 5 }, { foo: 42, bar: 10, bbar: 5 }, {outputKeys: ["foo", "bar"]})
+  it "should return the keys of an entire object although it has no changes ", ->
+    assert.deepEqual { foo: { a: 1, b: 2, c: [1, 2] }, bbar__added: 5 }, diff({ foo: { a: 1, b: 2, c: [1, 2] } }, { foo: { a: 1, b: 2, c: [1, 2] }, bbar: 5 }, {outputKeys: ["foo", "bar"]})
+
 describe 'diff({keysOnly: true})', ->
 
   describe 'with simple scalar values', ->
