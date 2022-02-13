@@ -301,7 +301,7 @@ describe 'diffString', ->
 
   it "should produce the expected result for the example JSON files", ->
     assert.equal diffString(a, b, {color: false, full: true}), readExampleFile('full-result.jsdiff')
-    assert.equal diffString(big_a, big_b, {color: false}), readExampleFile('big_result.jsdiff')
+    assert.equal diffString(big_a, big_b, {color: false, collapseElisionsAfter: 5}), readExampleFile('big_result.jsdiff')
 
   it "should produce the expected colored result for the example JSON files", ->
     assert.equal diffString(a, b, {color: true, full: true}), readExampleFile('full-result-colored.jsdiff')
