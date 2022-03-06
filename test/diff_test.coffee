@@ -296,12 +296,15 @@ describe 'diffString', ->
   readExampleFile = (file) -> fs.readFileSync(Path.join(__dirname, '../example', file), 'utf8')
   a = JSON.parse(readExampleFile('a.json'))
   b = JSON.parse(readExampleFile('b.json'))
+  big_a = JSON.parse(readExampleFile('big_a.json'))
+  big_b = JSON.parse(readExampleFile('big_b.json'))
   # Get duplicate copies for the precision test - numbers within these are altered (rounded) by the precision operation
   aprec = JSON.parse(readExampleFile('a.json'))
   bprec = JSON.parse(readExampleFile('b.json'))
 
   it "should produce the expected result for the example JSON files", ->
     assert.equal diffString(a, b, {color: false, full: true}), readExampleFile('full-result.jsdiff')
+    assert.equal diffString(big_a, big_b, {color: false, collapseElisionsAfter: 5}), readExampleFile('big_result.jsdiff')
 
   it "should produce the expected result for the example JSON files with precision set to 1", ->
     assert.equal diffString(a, b, {color: false, full: true, precision: 1}), readExampleFile('full-result-precision-1.jsdiff')

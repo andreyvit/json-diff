@@ -48,6 +48,10 @@ describe 'colorizeToArray', ->
     expected = [" [", "   ...", "   {", "+    foo: 42", "   }", "   ...", " ]"]
     assert.deepEqual colorizeToArray(input), expected
 
+  it "should collapse long sequences of identical subobjects into one '...'", ->
+    input = [ [" "], [" "], [" "], [" "], [" "], [" "], [" "], ["~", {"foo__added": 42}], [" "] ]
+    expected = [" [", "   ... (7 entries)", "   {", "+    foo: 42", "   }", "   ...", " ]"]
+    assert.deepEqual colorizeToArray(input, {collapseElisionsAfter: 5}), expected
 
 
 describe 'colorize', ->
