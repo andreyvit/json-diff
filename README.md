@@ -273,14 +273,15 @@ Output:
 
 Change Log
 ----------
- * 0.7.1 Add --output-keys option
- * 0.7.0 Add --sort option
- * 0.6.3 Fix ticket #68
+ * 0.7.2 Add --maxElisions and --precision options.
+ * 0.7.1 Add --output-keys option.
+ * 0.7.0 Add --sort option.
+ * 0.6.3 Fix ticket #68.
  * 0.6.2 Provide examples of setting mode from code.
  * 0.6.1 Return exit code 0. Update cli-color to the latest version.
- * 0.6.0 Convert project code to ES6
- * 0.5.5 Fix bug in scalarize fuzzy compare logic
- * 0.4.0 Add --keys-only feature
+ * 0.6.0 Convert project code to ES6.
+ * 0.5.5 Fix bug in scalarize fuzzy compare logic.
+ * 0.4.0 Add --keys-only feature.
 
 License
 -------
