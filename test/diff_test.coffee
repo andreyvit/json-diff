@@ -100,7 +100,10 @@ describe 'diff', ->
     it "should handle type mismatch during scalarize", ->
       assert.deepEqual( { "s": [ [ "~", [ [ "~", { "b": { "__old": "123", "__new": "abc" } } ] ] ], [ "+", [] ] ] },  
                         diff({"s": [[{ "b": "123" }]]}, {"s": [[{ "b": "abc" }], []]} ) )
-
+      
+    it "bug 76", ->
+      assert.deepEqual( undefined,  
+                        diff(["a", {"foo": "bar"}, {"foo": "bar"}], ["a", {"foo": "bar"}, {"foo": "bar"}] ) )
 
 describe 'diff({sort: true})', ->
   describe 'with arrays', ->
