@@ -101,7 +101,7 @@ describe 'diff', ->
       assert.deepEqual( { "s": [ [ "~", [ [ "~", { "b": { "__old": "123", "__new": "abc" } } ] ] ], [ "+", [] ] ] },  
                         diff({"s": [[{ "b": "123" }]]}, {"s": [[{ "b": "abc" }], []]} ) )
       
-    it "bug 76", ->
+    it "should handle mixed scalars and non-scalars in scalarize", ->
       assert.deepEqual( undefined,  
                         diff(["a", {"foo": "bar"}, {"foo": "bar"}], ["a", {"foo": "bar"}, {"foo": "bar"}] ) )
 
