@@ -273,6 +273,7 @@ Output:
 
 Change Log
 ----------
+ * 0.7.3 Revert use of ?? operator in 0.7.2 (which caused a breaking change)
  * 0.7.2 Add --maxElisions and --precision options.
  * 0.7.1 Add --output-keys option.
  * 0.7.0 Add --sort option.
