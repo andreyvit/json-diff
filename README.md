@@ -46,7 +46,7 @@ Detailed:
         -f, --full              Include the equal sections of the document, not just the deltas
               --max-elisions COUNT  Max number of ...'s to show in a row in "deltas" mode (before collapsing them)
         -o, --output-keys KEYS  Always print these [comma separated] keys, with their values, if they are in an object with a diff
-        -n, --output-new-only   Output only the added and new diffs (without marking them as such). If
+        -n, --output-new-only   Output only the updated and new key/value pairs (without marking them as such). If
                                 you need only the diffs from the old file, just exchange the first and second json.
         -s, --sort              Sort primitive values in arrays before comparing
         -k, --keys-only         Compare only the keys, ignore the differences in values
