@@ -273,6 +273,7 @@ Output:
 
 Change Log
 ----------
+ * 0.8.0 Add --keep-unchanged-values option
  * 0.7.4 Fix bug #76
  * 0.7.3 Revert use of ?? operator in 0.7.2 (which caused a breaking change)
  * 0.7.2 Add --maxElisions and --precision options.
