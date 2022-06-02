@@ -110,6 +110,10 @@ describe 'diff({sort: true})', ->
     it "should return undefined for two arrays with the same contents in different order", ->
       assert.deepEqual undefined, diff( [1, undefined, null, true, "", {a:4}, [7, 8]], [[7, 8], {a:4}, true, null, undefined, "", 1], {sort: true})
 
+describe 'diff({keepUnchangedValues: true})', ->
+  describe 'with nested object', ->
+    it "should return partial object with modified and unmodified elements in the edited scope", ->
+      assert.deepEqual { "a" : { "b" : [ [" ", 1], ["-", 2], [" ", 3], ["+", 4]] } }, diff( { "a" : { "b" : [ 1, 2, 3], "c": "d" } }, { "a" : { "b" : [ 1, 3, 4], "c": "d"} }, {keepUnchangedValues: true})
 
 describe 'diff({full: true})', ->
 
