@@ -321,3 +321,18 @@ describe 'diffString', ->
 
   it "return an empty string when no diff found", ->
     assert.equal diffString(a, a), ''
+
+describe 'diff({ outputNewOnly: true }', ->
+
+  it "should return only new diffs (added)", ->
+    assert.deepEqual { bbar: 5 }, diff({ foo: 42, bar: 10 }, { foo: 42, bar: 10, bbar: 5 }, {outputNewOnly: true})
+  it "should return only new diffs (changed)", ->
+      assert.deepEqual { foo: 13, bbar: 5 }, diff({ foo: 42, bar: 10 }, { foo: 13, bar: 10, bbar: 5 }, {outputNewOnly: true})
+  it "should return only new diffs (deleted)", ->
+      assert.deepEqual { bbar: 5 }, diff({ foo: 42, bar: 10 }, { bar: 10, bbar: 5 }, {outputNewOnly: true})
+  it "should return only old diffs - exchanged first and second json (added)", ->
+    assert.deepEqual undefined, diff({ foo: 42, bar: 10, bbar: 5 }, { foo: 42, bar: 10 }, {outputNewOnly: true})
+  it "should return only old diffs - exchanged first and second json (changed)", ->
+      assert.deepEqual { foo: 42 }, diff({ foo: 13, bar: 10, bbar: 5 }, { foo: 42, bar: 10 }, {outputNewOnly: true})
+  it "should return only old diffs - exchanged first and second json (deleted)", ->
+      assert.deepEqual { foo: 42 }, diff({ bar: 10, bbar: 5 }, { foo: 42, bar: 10 }, {outputNewOnly: true})
