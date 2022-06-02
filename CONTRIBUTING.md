@@ -13,5 +13,5 @@ Steps to a new release
     * update change log in README
     * git commit; git push
     * npm version <next.version.number>
-    * git push --tags
+    * git push --tags; git push
     * npm publish

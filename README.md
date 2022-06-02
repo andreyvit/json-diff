@@ -33,24 +33,34 @@ Detailed:
 
     % json-diff --help
 
-    Usage: json-diff [-vCjfosk] first.json second.json
+    Usage: json-diff [-vCjfonskKp] first.json second.json
 
-        Arguments:
-        <first.json>          Old file
-        <second.json>         New file
+    Arguments:
+    <first.json>          Old file
+    <second.json>         New file
 
-        General options:
-        -v, --verbose           Output progress info
-        -C, --[no-]color        Colored output
-        -j, --raw-json          Display raw JSON encoding of the diff
-        -f, --full              Include the equal sections of the document, not just the deltas
-              --max-elisions COUNT  Max number of ...'s to show in a row in "deltas" mode (before collapsing them)
-        -o, --output-keys KEYS  Always print these [comma separated] keys, with their values, if they are in an object with a diff
-        -n, --output-new-only   Output only the updated and new key/value pairs (without marking them as such). If
-                                you need only the diffs from the old file, just exchange the first and second json.
-        -s, --sort              Sort primitive values in arrays before comparing
-        -k, --keys-only         Compare only the keys, ignore the differences in values
-        -h, --help              Display this usage information
+    General options:
+    -v, --verbose         Output progress info
+    -C, --[no-]color      Colored output
+    -j, --raw-json        Display raw JSON encoding of the diff
+    -f, --full            Include the equal sections of the document, not just the deltas
+        --max-elisions COUNT  Max number of ...'s to show in a row in "deltas" mode (before
+                                collapsing them)
+
+    -o, --output-keys KEYS  Always print this comma separated keys, with their value, if they are
+                            part of an object with any diff
+
+    -n, --output-new-only   Output only the updated and new key/value pairs (without marking them as
+                            such). If you need only the diffs from the old file, just exchange the
+                            first and second json.
+
+    -s, --sort            Sort primitive values in arrays before comparing
+    -k, --keys-only       Compare only the keys, ignore the differences in values
+    -K, --keep-unchanged-values   Instead of omitting values that are equal, output them as they are
+    -p, --precision DECIMALS  Round all floating point numbers to this number of decimal places prior
+                                to comparison
+
+    -h, --help            Display this usage information
 
 In javascript (ES5):
 
@@ -275,6 +285,7 @@ Output:
 
 Change Log
 ----------
+ * 0.9.0 Add --output-new-only option
  * 0.8.0 Add --keep-unchanged-values option
  * 0.7.4 Fix bug #76
  * 0.7.3 Revert use of ?? operator in 0.7.2 (which caused a breaking change)
