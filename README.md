@@ -315,6 +315,7 @@ Output:
 
 Change Log
 ----------
+ * 0.10.0 Add --exclude-keys
  * 0.9.1 Fix bug #88
  * 0.9.0 Add --output-new-only option
  * 0.8.0 Add --keep-unchanged-values option
