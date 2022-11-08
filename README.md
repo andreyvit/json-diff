@@ -50,7 +50,7 @@ Detailed:
     -o, --output-keys KEYS  Always print this comma separated keys, with their value, if they are
                             part of an object with any diff
 
-    -x, --exclude-keys KEYS  Exclude this comma separated keys from comparison on both files
+    -x, --exclude-keys KEYS  Exclude these comma separated keys from comparison on both files
 
     -n, --output-new-only   Output only the updated and new key/value pairs (without marking them as
                             such). If you need only the diffs from the old file, just exchange the
