@@ -54,6 +54,9 @@ describe 'diff', ->
     it "should return [..., ['+', <added item>]] for two arrays when the second one has an extra value at the end (edge case test)", ->
       assert.deepEqual [[' '], [' '], ['+', 30]], diff([10, 20], [10, 20, 30])
 
+    it "should return [['-', true],  ['+', 'true']] for two arrays with identical strings of different types", ->
+      assert.deepEqual undefined, diff([10, 20, 30], [10, 20, 30])
+
   describe 'with arrays of objects', ->
 
     it "should return undefined for two arrays with identical contents", ->

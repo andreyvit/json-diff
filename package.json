@@ -6,7 +6,7 @@
   ],
   "name": "json-diff",
   "description": "JSON diff",
-  "version": "0.10.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/andreyvit/json-diff",
   "license": "MIT",
   "repository": {
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "cli-color": "^2.0.0",
-    "difflib": "~0.2.1",
+    "@ewoudenberg/difflib": "0.1.0",
     "dreamopt": "~0.8.0"
   },
   "devDependencies": {

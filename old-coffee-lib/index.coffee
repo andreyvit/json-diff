@@ -1,4 +1,4 @@
-{ SequenceMatcher } = require 'difflib'
+{ SequenceMatcher } = require '@ewoudenberg/difflib'
 { extendedTypeOf } = require './util'
 { colorize } = require './colorize'
 

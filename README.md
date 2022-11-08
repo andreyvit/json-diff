@@ -315,6 +315,7 @@ Output:
 
 Change Log
 ----------
+ * 1.0.0 Properly distinguish list elements with identical strings of different types e.g. ["true"] vs [true], ["0"] vs [0] (enabled by switching to a new difflib)
  * 0.10.0 Add --exclude-keys
  * 0.9.1 Fix bug #88
  * 0.9.0 Add --output-new-only option
