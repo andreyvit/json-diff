@@ -337,6 +337,7 @@ Output:
 
 ## Change Log
 
+- 1.0.2 Add colorize and colorizeToCallback to module exports (Fix bug #103)
 - 1.0.1 Bug fixes: Properly compare date objects; properly exclude keys with -x; improve README readability.
 - 1.0.0 Properly distinguish list elements with identical strings of different types e.g. `["true"]` vs `[true]`, `["0"]` vs `[0]` (enabled by switching to a new difflib)
 - 0.10.0 Add --exclude-keys
