@@ -14,4 +14,4 @@ Steps to a new release
     * git commit; git push
     * npm version <next.version.number>
     * git push --tags; git push
-    * npm publish
+    * npm publish (get one-time NPM password from authy)
