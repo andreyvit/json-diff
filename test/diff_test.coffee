@@ -14,8 +14,18 @@ describe 'diff', ->
     it "should return undefined for two identical strings", ->
       assert.deepEqual undefined, diff("foo", "foo")
 
+    it "should return undefined for two identical dates", ->
+      date = new Date()
+      assert.deepEqual undefined, diff(date, date)
+
     it "should return { __old: <old value>, __new: <new value> } object for two different numbers", ->
       assert.deepEqual { __old: 42, __new: 10 }, diff(42, 10)
+
+    it "should return { __old: <old value>, __new: <new value> } object for two different dates", ->
+      oldDate = new Date()
+      newDate = new Date()
+      newDate.setFullYear(oldDate.getFullYear()-4)
+      assert.deepEqual { __old: oldDate, __new: newDate }, diff(oldDate, newDate)
 
   describe 'with objects', ->
 
