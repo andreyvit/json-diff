@@ -1,4 +1,4 @@
-color = require 'cli-color'
+color = require 'colors/safe'
 
 { extendedTypeOf } = require './util'
 
