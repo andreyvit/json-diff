@@ -11,7 +11,7 @@ Steps to a new release
     * npm ci
     * npm run test
     * update change log in README
-    * git commit; git push
+    * git commit -a -m "Update README"; git push
     * npm version <next.version.number>
     * git push --tags; git push
     * npm publish (get one-time NPM password from authy)
