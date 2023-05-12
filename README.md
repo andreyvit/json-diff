@@ -337,6 +337,7 @@ Output:
 
 ## Change Log
 
+- 1.0.4 Fix typo that broke -o/--output-keys
 - 1.0.3 Change from cli-color to colors to reduce package size.
 - 1.0.2 Add colorize and colorizeToCallback to module exports (Fix bug #103)
 - 1.0.1 Bug fixes: Properly compare date objects; properly exclude keys with -x; improve README readability.
