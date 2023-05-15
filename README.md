@@ -336,7 +336,7 @@ Output:
 </details>
 
 ## Change Log
-
+- 1.0.6 Comment out another debugging output.
 - 1.0.5 Comment out debugging output(!)
 - 1.0.4 Fix typo that broke -o/--output-keys
 - 1.0.3 Change from cli-color to colors to reduce package size.
