@@ -6,7 +6,7 @@
   ],
   "name": "json-diff",
   "description": "JSON diff",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "homepage": "https://github.com/andreyvit/json-diff",
   "license": "MIT",
   "repository": {
