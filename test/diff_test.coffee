@@ -241,6 +241,20 @@ describe 'diff({ excludeKeys: foo,bar }', ->
   it "shouldn't return keys foo and bar (with addition) ", ->
     assert.deepEqual undefined, diff({ bbar: 5 }, { foo: 42, bar: 10, bbar: 5 }, {excludeKeys: ["foo", "bar"]})
 
+describe 'diff({ excludeKeys: foo, bar outputKeys: foo }', ->
+
+  it "Should return foo even though it is in excludeKeys", -> 
+    assert.deepEqual { bbar__added: 5, foo: 42 }, diff({ foo: 42 }, { bar: 10, bbar: 5 }, {excludeKeys: ["foo", "bar"], outputKeys: ["foo"]})
+ 
+   it "Should return foo even though it has not changed", -> 
+    assert.deepEqual { bbar__added: 5, foo: 42 }, diff({ foo: 42 }, { foo: 42,  bar: 10, bbar: 5 }, {excludeKeys: ["foo", "bar"], outputKeys: ["foo"]})
+ 
+  it "shouldn't return keys foo because it doesn't exist in value 1", ->
+    assert.deepEqual { bbar__added: 5 }, diff({ bar: 10 }, { foo: 42, bar: 10, bbar: 5 }, {excludeKeys: ["foo", "bar"], outputKeys: ["foo"]})
+ 
+  it "should return foo of value 1 event though it has changed", ->
+    assert.deepEqual { bbar: { __new: 6,  __old: 5 }, foo: 42 }, diff({ bbar: 5, foo: 42 }, { foo: 43, bar: 10, bbar: 6 }, {excludeKeys: ["foo", "bar"], outputKeys: ["foo"]})
+
 describe 'diff({keysOnly: true})', ->
 
   describe 'with simple scalar values', ->
